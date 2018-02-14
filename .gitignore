@@ -1,0 +1,4 @@
+*.playground
+.DS_Store
+*.rtf
+*.txt
