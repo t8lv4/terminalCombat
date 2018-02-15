@@ -11,7 +11,7 @@ import Foundation
 
 ////////////////
 //
-//MARK: varaibles, functions, collections
+//MARK: global variables, functions, collections
 //
 ////////////////
 
@@ -121,6 +121,15 @@ class teamMember {
         self.strength = strength
     }
     
+    //print name, life ans strength points
+    func summarize() {
+        //don't print the dead !
+        if !(self.life == 0) {
+            print("\(self.name, self.life, self.strength)\n")
+        }
+    }
+    
+    
 }
 
 
@@ -130,7 +139,7 @@ class teamMember {
 //
 //////////////
 
-//input player's names
+//set up player's names
 var player1 = Player()
 player1.getPlayerName()
 
@@ -148,10 +157,12 @@ print("hello \(player1.nameOfPlayer!) and \(player2.nameOfPlayer!) !"
 
 //MARK: set up
 
+//create var to pass value at memberTeam [] instantiation
 var name = bufferName[0]
 var life = bufferValue[0]
 var strength = bufferValue[1]
 
+//create an array of team's members
 var m00: teamMember? ; var m01: teamMember? ; var m02: teamMember?
 var memberTeam0 = [m00, m01, m02]
 
@@ -159,7 +170,7 @@ var m10: teamMember? ; var m11: teamMember? ; var m12: teamMember?
 var memberTeam1 = [m10, m11, m12]
 
 //set team 0 up
-print("\(playerName[0]) : let's set your team up\n")
+print("\(playerName[0]) : let's set up your team\n")
 for i in 0...2 {
     print("for member \(i + 1):")
     let _ = setUp()
@@ -169,8 +180,8 @@ for i in 0...2 {
     memberTeam0[i] = teamMember(name: name, life: life, strength: strength)
 }
 
-//set team 1 up
-print("\(playerName[1]) : let's set your team up\n")
+//set teams up
+print("\n\(playerName[1]) : let's set up your team\n")
 for i in 0...2 {
     print("for member \(i + 1):")
     let _ = setUp()
@@ -180,19 +191,18 @@ for i in 0...2 {
     memberTeam1[i] = teamMember(name: name, life: life, strength: strength)
 }
 
-print("great ! let's summarize\n")
+print("\ngreat ! let's summarize\n")
 
-//print each player's team
-print("\(playerName[0]), here is your team :")
+//print each player's team (name, life and strength points)
+print("\(playerName[0]), here is your team :\n")
 for i in 0...2 {
-    print("\(memberTeam0[i]!.name, memberTeam0[i]!.life, memberTeam0[i]!.strength)\n")
+    memberTeam0[i]!.summarize()
 }
 
-print("\(playerName[1]), here is your team :")
+print("\(playerName[1]), here is your team :\n")
 for i in 0...2 {
-    print("\(memberTeam1[i]!.name, memberTeam1[i]!.life, memberTeam1[i]!.strength)\n")
+    memberTeam1[i]!.summarize()
 }
-
 
 
 
