@@ -33,7 +33,7 @@ var opponent = String()
 var newLifePoints = Int()
 
 //store wizard's name
-var nameOfWizard = ["", ""]
+var nameOfWizard = ["", "", "", "", "", ""]
 //store wizard's life points
 var wizardLife = [0, 0]
 
@@ -114,7 +114,7 @@ class setUp {
         }
     }
     
-    //to temporary store values during each instantiation of setUp
+    //temporarily store values during each instantiation of setUp
     func useBuffer(life: Int, strength: Int) {
         bufferValue[0] = life
         bufferValue[1] = strength
@@ -141,8 +141,6 @@ class teamMember {
             print("\(self.name): life = \(self.life), strength = \(self.strength)")
         }
     }
-    
-    
 }
 
 
@@ -196,8 +194,8 @@ for i in 0...2 {
     strength = bufferValue[1]
     //instantiate team member
     memberTeam0[i] = teamMember(name: name, life: life, strength: strength)
-    //set value of index 0 of nameOfWizard[] with wizard names
-    //set value of index 0 of wizardLife[] with wizard life points
+    //set value of index 0 of nameOfWizard[] with wizard's name
+    //set value of index 0 of wizardLife[] with wizard's life points
     if (memberTeam0[i]!.life == 80) {
         nameOfWizard[0] = memberTeam0[i]!.name
         wizardLife[0] = memberTeam0[i]!.life
@@ -260,21 +258,19 @@ for j in 0...1 {
 //
 //////////////////////
 
-//print fighters values for team 0
-func introducingFighters0() {
-    print("your fighters are :")
-    //prints name, life and strength of the living (ie life > 0)
-    for i in 0...2 {
-        //but don't print the wizard
-        if (memberTeam0[i]!.name != nameOfWizard[0]) {
-            memberTeam0[i]!.summarize()
-        }
+//print new life points of opponent after combat, check for liveness
+//call from fightAgainstTeam1()
+func reportTeam1(casualty: String, level: Int) {
+    print("\nafter this combat round, \(opponent) has \(level) life points")
+    //check for liveness
+    if (level <= 0) {
+        print("\(opponent), you're out of this game !\n")
     }
 }
 
-//print fighters values for team 1 (including the wizard !)
+//print fighters values for team 1 (including the wizard !), call from chooseOpponent1()
 func introducingOpponent1() {
-    print("fighters are :")
+    print("there are :")
     //prints name, life and strength of the living (ie life > 0)
     for i in 0...2 {
         //but don't print the wizard -> you need this to create a coherent team1FighterName[]
@@ -287,57 +283,7 @@ func introducingOpponent1() {
     }
 }
 
-//player 0 choose a fighter
-func chooseFighter0() {
-    //call function to read fighters values
-    introducingFighters0()
-    
-    print("choose your fighter (enter his•her name):")
-    //read the input
-    if let fighter = readLine() {
-        //check if input is valid
-        if (team0FighterName.contains(fighter)) {
-            //parse the team names to find a match with the input value
-            for i in 0...2 {
-                if (memberTeam0[i]!.name == fighter) {
-                    //pass strength points to the fight function
-                    fightAgainstTeam1(hit: memberTeam0[i]!.strength)
-                }
-            }
-        } else {
-            //input name is invalid
-            print("i didn't get it")
-            chooseFighter0()
-        }
-    }
-}
-
-//teamMember0 fights teamMember1
-func fightAgainstTeam1(hit: Int) {
-    //call chooseOpponent
-    chooseOpponent1()
-    //parse the team members to match with opponent value and find the life points
-    for i in 0...2 {
-        if (memberTeam1[i]!.name == opponent) {
-            //actually THIS is the battle field
-            //substract strength points (the 'hit' value) from life points of the opponent
-            memberTeam1[i]!.life -= hit
-            //give the new life value to newLifePoints
-            newLifePoints = memberTeam1[i]!.life
-            //print("newLIfePoints are \(newLifePoints)")
-            //give the right name to opponent
-            opponent = memberTeam1[i]!.name
-        }
-    }
-    reportTeam1(casualty: opponent, level: newLifePoints)
-}
-
-//print new life points of a team 1 member after combat
-func reportTeam1(casualty: String, level: Int) {
-    print("after combat, \(opponent) has \(level) life points")
-}
-
-//teamMember0[] choose an opponent
+//teamMember0[] choose an opponent, call from fightAgainstTeam1()
 func chooseOpponent1() {
     print("choose the opponent : throw down the gauntlet ! (...by typing his•her name)")
     //call function to print fighters values
@@ -345,16 +291,17 @@ func chooseOpponent1() {
     
     //read input
     if let choice = readLine() {
-        print("and the opponent is \(choice)")
         //check if input is valid
-        if (team1FighterName.contains(choice)) {
-            //parse the team members to find a match
+        if (team1FighterName.contains(choice)) && (choice != "") {
+            //scan the team members to find a match
             for i in 0...2 {
-                //memberTeam1[i]!.life >= 0 : you don't want to fight the dead. it's a double check.
-                if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life >= 0) {
-                    //give opponent the choice value (ie the name of the fighter)
+                if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life > 0){
+                    //give opponent choice value (ie the name of the fighter)
                     opponent = choice
-                    //print("and the opponent is \(opponent) !")
+                //you don't want to fight a dead, so now you actually *can't* fight a dead
+                } else if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life <= 0) {
+                    print("chill, \(memberTeam1[i]!.name) is already dead...\n")
+                    chooseOpponent1()
                 }
             }
         } else {
@@ -366,6 +313,65 @@ func chooseOpponent1() {
     }
 }
 
+//teamMember0 fights teamMember1, call from chooseFighter0()
+func fightAgainstTeam1(hit: Int) {
+    //call chooseOpponent
+    chooseOpponent1()
+    //scan the team members to match with opponent value and find the life points
+    for i in 0...2 {
+        if (memberTeam1[i]!.name == opponent) {
+            //actually THIS is the battle field
+            //substract strength points (the 'hit' value) from life points of the opponent
+            memberTeam1[i]!.life -= hit
+            //give the new life value to newLifePoints
+            newLifePoints = memberTeam1[i]!.life
+        }
+    }
+    reportTeam1(casualty: opponent, level: newLifePoints)
+}
+
+//print fighters values for team 0, call from chooseFighter0()
+func introducingFighters0() {
+    print("your fighters are :")
+    //prints name, life and strength of the living (ie life > 0)
+    for i in 0...2 {
+        //but don't print the wizard
+        if !(nameOfWizard.contains(memberTeam0[i]!.name)) {
+            memberTeam0[i]!.summarize()
+        }
+    }
+}
+
+//player 0 choose a fighter
+func chooseFighter0() {
+    //call function to read fighters values
+    introducingFighters0()
+    
+    print("choose your fighter (enter his•her name):")
+    //read the input
+    if let fighter = readLine() {
+        //check if input is valid && doesn't read a '\n'
+        if (team0FighterName.contains(fighter)) && (fighter != ""){
+            //scan the team names to find a match with the input value
+            for i in 0...2 {
+                if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life > 0){
+                    //pass strength points to the fight function
+                    fightAgainstTeam1(hit: memberTeam0[i]!.strength)
+                //if the fighter is dead, relaunch the choose fighter process
+                } else if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life <= 0) {
+                    print("we're not rebooting the walking dead here")
+                    chooseFighter0()
+                }
+            }
+        } else {
+            //input name is invalid
+            print("i didn't get it")
+            chooseFighter0()
+        }
+    }
+}
+
+//add wizard's strength points to life points of a chosen fighter
 func chooseHeal() {
     print("choose your team member (enter his•her name)")
     for i in 0...2 {
@@ -378,7 +384,7 @@ func chooseHeal() {
     if let choice = readLine() {
         //check if input is valid
         if team0FighterName.contains(choice){
-            //parse the members to find a match
+            //scan the members to find a match
             for i in 0...2 {
                 if (choice == memberTeam0[i]!.name) {
                     //add wizard's strength to life points
@@ -395,8 +401,8 @@ func chooseHeal() {
     }
 }
 
-//choose between a fight or a cure
-func fightOrHeal() {
+//choose a fight or a cure
+func team0FightOrHeal() {
     print("\(playerName[0]), what do you want to do:"
         + "\ntype 1 to fight"
         + "\ntype 2 to heal a member of your team")
@@ -411,16 +417,19 @@ func fightOrHeal() {
                 print("there's no wizard in your team. go fight !\n") ; chooseFighter0()
             //if the wizard is dead, go fight
             } else if (wizardLife[0] <= 0) {
-                print("the wizard is dead. RIP. now go fight !\n") ; chooseFighter0()
+                print("the wizard is gone with the elves. RIP. now go fight !\n") ; chooseFighter0()
             //else, go heal
             } else {
                 chooseHeal()
             }
         default: print("i didn't get it")
-            fightOrHeal()
+            team0FightOrHeal()
         }
     }
 }
 
 print("let's get to it !")
-fightOrHeal()
+while (true) {
+    team0FightOrHeal()
+}
+
