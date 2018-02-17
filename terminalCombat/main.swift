@@ -34,6 +34,8 @@ var newLifePoints = Int()
 
 //store wizard's name
 var nameOfWizard = ["", ""]
+//store wizard's life points
+var wizardLife = [0, 0]
 
 //store names of the fighters
 var team0FighterName = ["", "", ""]
@@ -93,10 +95,10 @@ class setUp {
     //set values for each character's type
     func setValue() {
         print("\nwhat's his•her type ?"
-            + "\ntype 1 for a fighter   >life = 100, strength = 10"
-            + "\ntype 2 for a giant     >life = 140, strength = 5"
-            + "\ntype 3 for a dwarf     >life = 60, strength = 20"
-            + "\ntype 4 for a wizard    >life = 80, healing strength = 10")
+            + "\ntype 1 for a fighter :: life = 100, strength = 10"
+            + "\ntype 2 for a giant :: life = 140, strength = 5"
+            + "\ntype 3 for a dwarf :: life = 60, strength = 20"
+            + "\ntype 4 for a wizard :: life = 80, healing strength = 10")
         if let type = readLine() {
             switch type {
             //1. fighter
@@ -106,7 +108,7 @@ class setUp {
             //3. dwarf
             case "3": useBuffer(life: 60, strength: 20)
             //4. wizard
-            case "4": useBuffer(life: 80, strength: 10) ;
+            case "4": useBuffer(life: 80, strength: 10)
             default: print("i didn't get it") ; return setValue()
             }
         }
@@ -195,17 +197,19 @@ for i in 0...2 {
     strength = bufferValue[1]
     //instantiate team member
     memberTeam0[i] = teamMember(name: name, life: life, strength: strength)
-    //create an array of wizard names
+    //set value of index 0 of nameOfWizard[] with wizard names
+    //set value of index 0 of wizardLife[] with wizard life points
     if (memberTeam0[i]!.life == 80) {
         nameOfWizard[0] = memberTeam0[i]!.name
+        wizardLife[0] = memberTeam0[i]!.life
     }
 }
 
-//create an array of fighters
+//create an array of fighter's names
 for i in 0...2 {
     //avoid wizard
     if !(nameOfWizard[0] == memberTeam0[i]!.name) {
-        //give fighter names values to index array of team0 fighter names
+        //set values to index in array of team0 fighter names
         team0FighterName[i] = memberTeam0[i]!.name
     }
 }
@@ -222,13 +226,16 @@ for i in 0...2 {
     strength = bufferValue[1]
     
     memberTeam1[i] = teamMember(name: name, life: life, strength: strength)
-    //value index of the array of wizard's names
+    //set value of index 1 of nameOfWizard[]
+    //set value of index 1 of wizardLife[] with wizard life points
     if (memberTeam1[i]!.life == 80) {
         nameOfWizard[1] = memberTeam1[i]!.name
+        wizardLife[1] = memberTeam1[i]!.life
     }
 }
 
-//value index array of fighter's names for team 1
+
+//set index values in array of fighter's names for team 1
 for i in 0...2 {
     //avoid wizard
     if !(nameOfWizard[1] == memberTeam1[i]!.name) {
@@ -256,28 +263,24 @@ for j in 0...1 {
 
 //print fighters values for team 0
 func introducingFighters0() {
-    print("fighters are :")
+    print("your fighters are :")
     //prints name, life and strength of the living (ie life > 0)
     for i in 0...2 {
         //but don't print the wizard
         if (memberTeam0[i]!.name != nameOfWizard[0]) {
             memberTeam0[i]!.summarize()
-            //create an array of fighter names
-            team0FighterName[i] = memberTeam0[i]!.name
         }
     }
 }
 
 //print fighters values for team 1 (including the wizard !)
-func introducingFighter1() {
+func introducingOpponent1() {
     print("fighters are :")
     //prints name, life and strength of the living (ie life > 0)
     for i in 0...2 {
         //but don't print the wizard -> you need this to create a coherent team1FighterName[]
         if (memberTeam1[i]!.name != nameOfWizard[1]) {
             memberTeam1[i]!.summarize()
-            //create an array of fighter names
-            team1FighterName[i] = memberTeam1[i]!.name
         } else {
             //print wizard name
             memberTeam1[i]!.summarize()
@@ -337,9 +340,9 @@ func reportTeam1(casualty: String, level: Int) {
 
 //teamMember0[] choose an opponent
 func chooseOpponent1() {
-    print("choose the opponent : throw down the gauntlet ! (...by typing his/her name)")
+    print("choose the opponent : throw down the gauntlet ! (...by typing his•her name)")
     //call function to print fighters values
-    introducingFighter1()
+    introducingOpponent1()
     
     //read input
     if let choice = readLine() {
@@ -397,13 +400,23 @@ func chooseHeal() {
 func fightOrHeal() {
     print("\(playerName[0]), what do you want to do:"
         + "\ntype 1 to fight"
-        + "\ntype 2 to heal a member of my team")
+        + "\ntype 2 to heal a member of your team")
     if let choice = readLine() {
         switch choice {
         //launch a combat turn
         case "1": print("let's fight then !") ; chooseFighter0()
         //heal
-        case "2": chooseHeal()
+        case "2":
+            //if there's no wizard in the team, go fight
+            if (nameOfWizard[0] == "") {
+                print("there's no wizard in your team. go fight !\n") ; chooseFighter0()
+            //if the wizard is dead, go fight
+            } else if (wizardLife[0] <= 0) {
+                print("the wizard is dead. RIP. now go fight !\n") ; chooseFighter0()
+            //else, go heal
+            } else {
+                chooseHeal()
+            }
         default: print("i didn't get it")
             fightOrHeal()
         }
