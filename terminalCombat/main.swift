@@ -160,11 +160,10 @@ var player2 = Player()
 player2.getPlayerName()
 
 
-print("\nhello \(player1.nameOfPlayer!) and \(player2.nameOfPlayer!) !"
+print("\n>hello \(player1.nameOfPlayer!) !"
+    + "\n>hello \(player2.nameOfPlayer!) !"
     + "\n"
-    + "\n"
-    + "\n>welcome to terminalCombat<"
-    + "\n"
+    + "\n>welcome to terminalCombat"
     + "\n")
 
 /////////////////////
@@ -358,12 +357,12 @@ func chooseOpponent1() {
                     //print("and the opponent is \(opponent) !")
                 }
             }
+        } else {
+            //input is invalid
+            print("i didn't get it"
+                + "\nplease try again")
+            chooseOpponent1()
         }
-    } else {
-        //input is invalid
-        print("i didn't get it"
-            + "please try again")
-        chooseOpponent1()
     }
 }
 
