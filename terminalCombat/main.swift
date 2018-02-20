@@ -54,22 +54,24 @@ var lifeTeam1 = [0, 0, 0]
 class Player {
     
     var nameOfPlayer: String?
-
+    
     func getPlayerName() {
         print("what's your name ?")
         if let name = readLine() {
+            //check name uniqueness
             if nameInGame.contains(name) {
                 print("your choice is not valid or this name is already in use"
                     + "\nplease choose another name")
                 getPlayerName()
             } else {
+                //set name
                 nameOfPlayer = name
+                //append array to further check names uniqueness
                 playerName.append(name)
                 nameInGame.append(name)
             }
         }
     }
-
 }
 
 //set the character's names, life and strength points up
@@ -80,15 +82,19 @@ class setUp {
         setValue()
     }
     
+    //set team member's names
     func setName() {
         print("enter a unique name")
         if let name = readLine() {
+            //check name uniqueness
             if nameInGame.contains(name) {
                 print("please choose another name : "
                     + "\nthis name is already in use, your choice is not valid.\n")
                 setName()
             } else {
+                //append the nameInGame array
                 nameInGame.append(name)
+                //pass value to a buffer to set team member's names
                 bufferName[0] = name
             }
         }
@@ -254,7 +260,25 @@ for j in 0...1 {
     print("\n=================\n\n")
 }
 
-//return boolean to while loop : if test is false, end the game
+//print winner, call from lifeLevels()
+func declareWinner() {
+    if (lifeTeam0.reduce(0, +) == 0) {
+        print("congrats (\(player1.nameOfPlayer!) ! you win this game !")
+    } else if (lifeTeam1.reduce(0, +) == 0) {
+        print("congrats (\(player0.nameOfPlayer!) ! you win this game !")
+    }
+}
+
+
+//print life levels for each team, call from alive()
+func lifeLevels() {
+    //print life points levels for each team
+    print("\n>\(playerName[0]) : your team level of life is \(lifeTeam0.reduce(0, +))")
+    print(">\(playerName[1]) : your team level of life is \(lifeTeam1.reduce(0, +))\n")
+    declareWinner()
+}
+
+//return boolean to while loop : if test is false, end the game, call from play()
 func alive() -> Bool {
     var test = Bool()
     for i in 0...2 {
@@ -268,11 +292,11 @@ func alive() -> Bool {
             test = true
         }
     }
-    //print life points levels
-    print("\n>\(playerName[0]) : your team level of life is \(lifeTeam0.reduce(0, +))")
-    print(">\(playerName[1]) : your team level of life is \(lifeTeam1.reduce(0, +))\n")
+    //print life levels for each team
+    lifeLevels()
     return test
 }
+
 
 ////////////////////////
 //
@@ -295,13 +319,7 @@ func report(casualty: String, level: Int) {
 func introducingOpponent1() {
     //prints name, life and strength of the living (ie life > 0)
     for i in 0...2 {
-        //but don't print the wizard -> you need this to create a coherent team1FighterName[]
-        if (memberTeam1[i]!.name != nameOfWizard[1]) {
-            memberTeam1[i]!.summarize()
-        } else {
-            //print wizard name
-            memberTeam1[i]!.summarize()
-        }
+        memberTeam1[i]!.summarize()
     }
 }
 
@@ -313,25 +331,22 @@ func chooseOpponent1() {
     
     //read input
     if let choice = readLine() {
-        //check if input is valid
-        if (team1FighterName.contains(choice)) && (choice != "") {
-            //scan the team members to find a match
-            for i in 0...2 {
-                if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life > 0){
-                    //give opponent choice value (ie the name of the fighter)
-                    opponent = choice
-                    //you don't want to fight a dead, so now you actually *can't* fight a dead
-                } else if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life <= 0) {
-                    print("\nchill, \(memberTeam1[i]!.name) is already dead...\n")
-                    chooseOpponent1()
-                }
+        //scan the team members to find a match
+        for i in 0...2 {
+            if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life > 0){
+                //give opponent choice value (ie the name of the fighter)
+                opponent = choice
+                //you don't want to fight a dead, so now you actually *can't* fight a dead
+            } else if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life <= 0) {
+                print("\nchill, \(memberTeam1[i]!.name) is already dead...\n")
+                chooseOpponent1()
             }
-        } else {
-            //input is invalid
-            print("i didn't get it"
-                + "\nplease try again")
-            chooseOpponent1()
         }
+    } else {
+        //input is invalid
+        print("i didn't get it"
+            + "\nplease try again")
+        chooseOpponent1()
     }
 }
 
@@ -439,7 +454,7 @@ func team0FightOrHeal() {
                 print("there's no wizard in your team. go fight !\n") ; chooseFighter0()
                 //if the wizard is dead, go fight
             } else if (wizardLife[0] <= 0) {
-                print("the wizard is gone with the elves. RIP. now go fight !\n") ; chooseFighter0()
+                print("the wizard took the boat with the elves. RIP. now go fight !\n") ; chooseFighter0()
                 //else, go heal
             } else {
                 chooseHeal0()
@@ -460,13 +475,7 @@ func team0FightOrHeal() {
 func introducingOpponent0() {
     //prints name, life and strength of the living (ie life > 0)
     for i in 0...2 {
-        //but don't print the wizard -> you need this to create a coherent team1FighterName[]
-        if (memberTeam0[i]!.name != nameOfWizard[0]) {
-            memberTeam0[i]!.summarize()
-        } else {
-            //print wizard name
-            memberTeam0[i]!.summarize()
-        }
+        memberTeam0[i]!.summarize()
     }
 }
 
@@ -478,25 +487,22 @@ func chooseOpponent0() {
     
     //read input
     if let choice = readLine() {
-        //check if input is valid
-        if (team0FighterName.contains(choice)) && (choice != "") {
-            //scan the team members to find a match
-            for i in 0...2 {
-                if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life > 0){
-                    //give opponent choice value (ie the name of the fighter)
-                    opponent = choice
-                    //you don't want to fight a dead, so now you actually *can't* fight a dead
-                } else if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life <= 0) {
-                    print("\nchill, \(memberTeam0[i]!.name) is already dead...\n")
-                    chooseOpponent0()
-                }
+        //scan the team members to find a match
+        for i in 0...2 {
+            if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life > 0){
+                //give opponent choice value (ie the name of the fighter)
+                opponent = choice
+                //you don't want to fight a dead, so now you actually *can't* fight a dead
+            } else if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life <= 0) {
+                print("\nchill, \(memberTeam0[i]!.name) is already dead...\n")
+                chooseOpponent0()
             }
-        } else {
-            //input is invalid
-            print("i didn't get it"
-                + "\nplease try again")
-            chooseOpponent0()
         }
+    } else {
+        //input is invalid
+        print("i didn't get it"
+            + "\nplease try again")
+        chooseOpponent0()
     }
 }
 
@@ -604,7 +610,7 @@ func team1FightOrHeal() {
                 print("there's no wizard in your team. go fight !\n") ; chooseFighter1()
                 //if the wizard is dead, go fight
             } else if (wizardLife[1] <= 0) {
-                print("the wizard is gone with the elves. RIP. now go fight !\n") ; chooseFighter1()
+                print("the wizard took the boat with the elves. RIP. now go fight !\n") ; chooseFighter1()
                 //else, go heal
             } else {
                 chooseHeal1()
