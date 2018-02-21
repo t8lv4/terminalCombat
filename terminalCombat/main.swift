@@ -1,7 +1,8 @@
 //
 //  main.swift
+//
 //  terminalCombat, a combat game for two teams of three fighters.
-//      to be played on a terminal
+//  to be played on a terminal
 //
 //  Created by Morgan on 14/02/2018.
 //  Copyright © 2018 Morgan. All rights reserved.
@@ -45,6 +46,15 @@ var team1FighterName = ["", "", ""]
 var lifeTeam0 = [0, 0, 0]
 var lifeTeam1 = [0, 0, 0]
 
+//to test if there's a random weapon
+var happyWeapon = Int()
+
+//value of life points to be healed by the wizard
+var cureLife = Int()
+
+//a counter to go along life levels report
+var counter = 0
+
 ////////////////
 //
 //MARK: classes
@@ -66,7 +76,7 @@ class Player {
             } else {
                 //set name
                 nameOfPlayer = name
-                //append array to further check names uniqueness
+                //append arrays to further check names uniqueness
                 playerName.append(name)
                 nameInGame.append(name)
             }
@@ -260,6 +270,12 @@ for j in 0...1 {
     print("\n=================\n\n")
 }
 
+/////////////////////////////
+//
+//MARK: reports
+//
+////////////////////////////
+
 //print winner, call from lifeLevels()
 func declareWinner() {
     if (lifeTeam0.reduce(0, +) == 0) {
@@ -272,9 +288,11 @@ func declareWinner() {
 
 //print life levels for each team, call from alive()
 func lifeLevels() {
-    //print life points levels for each team
-    print("\n>\(playerName[0]) : your team level of life is \(lifeTeam0.reduce(0, +))")
-    print(">\(playerName[1]) : your team level of life is \(lifeTeam1.reduce(0, +))\n")
+    counter += 1
+    print("\nround \(counter)"
+        + "\n>\(playerName[0]) : your team level of life is \(lifeTeam0.reduce(0, +))"
+        + "\n>\(playerName[1]) : your team level of life is \(lifeTeam1.reduce(0, +))\n")
+    //if life level points <= 0, declare a winner
     declareWinner()
 }
 
@@ -297,23 +315,74 @@ func alive() -> Bool {
     return test
 }
 
+//print new life points of opponent after combat, check for liveness
+//call from fightAgainstTeamX()
+func report(casualty: String, level: Int) {
+    print("\nafter this combat, \(opponent) has \(level) life points left\n")
+    //check for liveness
+    if (level <= 0) {
+        print("\(opponent), you're out of this game !\n")
+    }
+}
+
+/////////////////////////
+//
+//MARK: special random weapon
+//
+/////////////////////////
+
+//if true, there's a new weapon (or cure) during this round
+func randomWeapon() -> Bool {
+    let diceRoll = Int(arc4random_uniform(100) + 1)
+    var bool = Bool()
+    //20% chance to get a special weapon
+    if (diceRoll > 40) && (diceRoll < 60) {
+        bool = true
+    } else {
+        bool = false
+    }
+    return bool
+}
+
+//print if there's a random weapon this round
+func printNews() {
+    print("\ngreat news !"
+        + "\nWOAW, the Wizard Of All Wizards sents you a special gift (this round only though)."
+        + "\nyou've just DOUBLED your strength !\n")
+}
+
+//if there's a random weapon this round, set happyWeapon value to 1 and print the good news
+func randomWeaponProcess() {
+    if (randomWeapon() == true) {
+        happyWeapon = 1
+        printNews()
+    }
+}
+
+////////////////////////
+//
+//MARK:Heal
+//
+///////////////////////
+
+//add wizard's strength value to life points, call from chooseHealX()
+func heal(wound: Int) -> Int{
+    //if there's a special weapon this round
+    if (happyWeapon == 1) {
+        cureLife += 20
+        //default
+    } else {
+        cureLife += 10
+    }
+    return cureLife
+}
+
 
 ////////////////////////
 //
 //MARK: team 0 round
 //
 ///////////////////////
-
-
-//print new life points of opponent after combat, check for liveness
-//call from fightAgainstTeamX()
-func report(casualty: String, level: Int) {
-    print("\nafter this combat round, \(opponent) has \(level) life points\n")
-    //check for liveness
-    if (level <= 0) {
-        print("\(opponent), you're out of this game !\n")
-    }
-}
 
 //print fighter's values for team 1 (including the wizard !), call from chooseOpponent1()
 func introducingOpponent1() {
@@ -352,16 +421,26 @@ func chooseOpponent1() {
 
 //teamMember0 fights teamMember1, call from chooseFighter0()
 func fightAgainstTeam1(hit: Int) {
+    //call randomWeapon and check boolean return
+    //true means there's a random weapon this round
+    randomWeaponProcess()
     //call chooseOpponent
     chooseOpponent1()
     //scan the team members to match with opponent value and find the life points
     for i in 0...2 {
         if (memberTeam1[i]!.name == opponent) {
             //actually THIS is the battle field
-            //substract strength points (the 'hit' value) from life points of the opponent
-            memberTeam1[i]!.life -= hit
-            //give the new life value to newLifePoints
-            newLifePoints = memberTeam1[i]!.life
+            //there's a special weapon : double the hit value
+            if (happyWeapon == 1) {
+                //substract strength points (the 'hit' value) from life points of the opponent
+                memberTeam1[i]!.life -= (hit*2)
+                //give the new life value to newLifePoints
+                newLifePoints = memberTeam1[i]!.life
+            //default behavior
+            } else {
+                memberTeam1[i]!.life -= hit
+                newLifePoints = memberTeam1[i]!.life
+            }
         }
     }
     report(casualty: opponent, level: newLifePoints)
@@ -410,6 +489,9 @@ func chooseFighter0() {
 
 //add wizard's strength points to life points of a chosen fighter
 func chooseHeal0() {
+    //call to check if there's a random weapon,
+    //if yes : print the news and set the value to be added to life points
+    randomWeaponProcess()
     print("choose your team member (enter his•her name)")
     for i in 0...2 {
         //don't print the dead && don't print the wizard
@@ -419,15 +501,20 @@ func chooseHeal0() {
     }
     //read input
     if let choice = readLine() {
+        //the wizard can't cure himself
+        if nameOfWizard.contains(choice) {
+            print("a wizard can't cure himself\n")
+            chooseHeal0()
         //check if input is valid
-        if team0FighterName.contains(choice){
+        } else if team0FighterName.contains(choice){
             //scan the members to find a match
             for i in 0...2 {
                 if (choice == memberTeam0[i]!.name) {
                     //add wizard's strength to life points
-                    memberTeam0[i]!.life += 10
+                    cureLife = memberTeam0[i]!.life
+                    memberTeam0[i]!.life = heal(wound: cureLife)
                     //print new life value
-                    print("\(memberTeam0[i]!.name) has now \(memberTeam0[i]!.life) life points")
+                    print("\(memberTeam0[i]!.name) has now \(memberTeam0[i]!.life) life points\n")
                 }
             }
         } else {
@@ -438,6 +525,7 @@ func chooseHeal0() {
     }
 }
 
+
 //choose a fight or a cure
 func team0FightOrHeal() {
     print("\(playerName[0]), what do you want to do:"
@@ -446,7 +534,7 @@ func team0FightOrHeal() {
     if let choice = readLine() {
         switch choice {
         //launch a combat turn
-        case "1": print("let's fight then !") ; chooseFighter0()
+        case "1": print("let's fight then !\n") ; chooseFighter0()
         //heal
         case "2":
             //if there's no wizard in the team, go fight
@@ -508,16 +596,26 @@ func chooseOpponent0() {
 
 //teamMember0 fights teamMember1, call from chooseFighter0()
 func fightAgainstTeam0(hit: Int) {
+    //call randomWeapon and check boolean return
+    //true means there's a random weapon this round
+    randomWeaponProcess()
     //call chooseOpponent
     chooseOpponent0()
     //scan the team members to match with opponent value and find the life points
     for i in 0...2 {
         if (memberTeam0[i]!.name == opponent) {
-            //actually THIS is the battle field
-            //substract strength points (the 'hit' value) from life points of the opponent
-            memberTeam0[i]!.life -= hit
-            //give the new life value to newLifePoints
-            newLifePoints = memberTeam0[i]!.life
+            //actually THIS is the battle field !
+            //if there's a random weapon this round : double hit value
+            if (happyWeapon == 1) {
+                //substract strength points (the 'hit' value) from life points of the opponent
+                memberTeam0[i]!.life -= (hit*2)
+                //give the new life value to newLifePoints
+                newLifePoints = memberTeam0[i]!.life
+                //default behavior
+            } else {
+                memberTeam0[i]!.life -= hit
+                newLifePoints = memberTeam0[i]!.life
+            }
         }
     }
     report(casualty: opponent, level: newLifePoints)
@@ -566,6 +664,9 @@ func chooseFighter1() {
 
 //add wizard's strength points to life points of a chosen fighter
 func chooseHeal1() {
+    //call to check if there's a random weapon,
+    //if yes : print the news and set the value to be added to life points
+    randomWeaponProcess()
     print("choose your team member (enter his•her name)")
     for i in 0...2 {
         //don't print the dead && don't print the wizard
@@ -575,15 +676,20 @@ func chooseHeal1() {
     }
     //read input
     if let choice = readLine() {
+        //the wizard can't cure himself
+        if nameOfWizard.contains(choice) {
+            print("a wizard can't cure himself\n")
+            chooseHeal1()
         //check if input is valid
-        if team1FighterName.contains(choice){
+        } else if team1FighterName.contains(choice){
             //scan the members to find a match
             for i in 0...2 {
                 if (choice == memberTeam1[i]!.name) {
                     //add wizard's strength to life points
-                    memberTeam1[i]!.life += 10
+                    cureLife = memberTeam1[i]!.life
+                    memberTeam1[i]!.life = heal(wound: cureLife)
                     //print new life value
-                    print("\(memberTeam1[i]!.name) has now \(memberTeam1[i]!.life) life points")
+                    print("\(memberTeam1[i]!.name) has now \(memberTeam1[i]!.life) life points\n")
                 }
             }
         } else {
@@ -602,7 +708,7 @@ func team1FightOrHeal() {
     if let choice = readLine() {
         switch choice {
         //launch a combat turn
-        case "1": print("let's fight then !") ; chooseFighter1()
+        case "1": print("let's fight then !\n") ; chooseFighter1()
         //heal
         case "2":
             //if there's no wizard in the team, go fight

@@ -6,7 +6,7 @@ terminalCombat is a RPG for two players, meant to be played on a terminal.
 
 # How do you play terminalCombat ?
 
-double click on the terminalCombat file. you'll be promped to enter the name of the players.
+double click on the terminalCombat file. you'll be prompted to enter the name of the players.
 
 # What are the rules of terminalCombat ?
 
