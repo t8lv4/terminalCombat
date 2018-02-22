@@ -53,7 +53,7 @@ var happyWeapon = Int()
 var cureLife = Int()
 
 //a counter to go along life levels report
-var counter = 0
+var roundCounter = 0
 
 ////////////////
 //
@@ -276,28 +276,23 @@ for j in 0...1 {
 //
 ////////////////////////////
 
-//print winner, call from lifeLevels()
-func declareWinner() {
+//print life levels for each team, call from alive()
+//if a team life levels == 0, call playAgain()
+func lifeLevels() {
+    print(">\(playerName[0]) : your team level of life is \(lifeTeam0.reduce(0, +))"
+        + "\n>\(playerName[1]) : your team level of life is \(lifeTeam1.reduce(0, +))\n")
+    //if life level points <= 0, declare a winner
     if (lifeTeam0.reduce(0, +) == 0) {
-        print("congrats (\(player1.nameOfPlayer!) ! you win this game !")
+        print("congrats \(player1.nameOfPlayer!) ! you win this game !\n")
+        playAgain()
     } else if (lifeTeam1.reduce(0, +) == 0) {
-        print("congrats (\(player0.nameOfPlayer!) ! you win this game !")
+        print("congrats \(player0.nameOfPlayer!) ! you win this game !\n")
+        playAgain()
     }
 }
 
-
-//print life levels for each team, call from alive()
-func lifeLevels() {
-    counter += 1
-    print("\nround \(counter)"
-        + "\n>\(playerName[0]) : your team level of life is \(lifeTeam0.reduce(0, +))"
-        + "\n>\(playerName[1]) : your team level of life is \(lifeTeam1.reduce(0, +))\n")
-    //if life level points <= 0, declare a winner
-    declareWinner()
-}
-
 //return boolean to while loop : if test is false, end the game, call from play()
-func alive() -> Bool {
+func alive(counter: Int) -> Bool {
     var test = Bool()
     for i in 0...2 {
         //set level of life points values to index of each lifeTeam array
@@ -310,7 +305,8 @@ func alive() -> Bool {
             test = true
         }
     }
-    //print life levels for each team
+    roundCounter += 1
+    print("\nround \(roundCounter)")
     lifeLevels()
     return test
 }
@@ -324,6 +320,29 @@ func report(casualty: String, level: Int) {
         print("\(opponent), you're out of this game !\n")
     }
 }
+
+////////////////////////
+//
+//MARK: easter egg
+//
+///////////////////////
+
+//set opponent life levels at 0, kill the game
+func killAll(player: Int) {
+    print("\nan easter egg is found !"
+        + "\nand it's a nasty one : it's a KILL ALL !\n")
+    if (player == 0) {
+        lifeTeam1 = [Int](repeating: 0, count: 3)
+        //print(">\(playerName[1]) : your team level of life is \(lifeTeam1.reduce(0, +))")
+        
+    } else if (player == 1) {
+        lifeTeam0 = [Int](repeating: 0, count: 3)
+        //print(">\(playerName[0]) : your team level of life is \(lifeTeam0.reduce(0, +))")
+        
+    }
+    lifeLevels()
+}
+
 
 /////////////////////////
 //
@@ -436,7 +455,7 @@ func fightAgainstTeam1(hit: Int) {
                 memberTeam1[i]!.life -= (hit*2)
                 //give the new life value to newLifePoints
                 newLifePoints = memberTeam1[i]!.life
-            //default behavior
+                //default behavior
             } else {
                 memberTeam1[i]!.life -= hit
                 newLifePoints = memberTeam1[i]!.life
@@ -505,7 +524,7 @@ func chooseHeal0() {
         if nameOfWizard.contains(choice) {
             print("a wizard can't cure himself\n")
             chooseHeal0()
-        //check if input is valid
+            //check if input is valid
         } else if team0FighterName.contains(choice){
             //scan the members to find a match
             for i in 0...2 {
@@ -547,6 +566,7 @@ func team0FightOrHeal() {
             } else {
                 chooseHeal0()
             }
+        case "fukushima": killAll(player: 0)
         default: print("i didn't get it")
         team0FightOrHeal()
         }
@@ -680,7 +700,7 @@ func chooseHeal1() {
         if nameOfWizard.contains(choice) {
             print("a wizard can't cure himself\n")
             chooseHeal1()
-        //check if input is valid
+            //check if input is valid
         } else if team1FighterName.contains(choice){
             //scan the members to find a match
             for i in 0...2 {
@@ -721,6 +741,7 @@ func team1FightOrHeal() {
             } else {
                 chooseHeal1()
             }
+        case "fukushima": killAll(player: 1)
         default: print("i didn't get it")
         team1FightOrHeal()
         }
@@ -736,13 +757,13 @@ func team1FightOrHeal() {
 
 //ask another game
 func playAgain() {
-    print("\nplay again ? (y/n)")
+    print("play again ? (y/n)")
     if let choice = readLine() {
         switch choice {
-        //call play, relaunch the game
-        case "y": play()
+        //reset round counter, call play to relaunch the game
+        case "y": roundCounter = 0 ; play()
         //stop the game
-        case "n": print("fair enough. shutdown now.")
+        case "n": print("fair enough. shutdown now.") ; exit(0)
         default: print("i didn't get it") ; playAgain()
         }
     }
@@ -753,7 +774,7 @@ func playAgain() {
 func play() {
     print("let's get to it !")
     //while alive() is true, each player has its round
-    while (alive()) {
+    while (alive(counter: roundCounter)) {
         team0FightOrHeal()
         team1FightOrHeal()
     }
