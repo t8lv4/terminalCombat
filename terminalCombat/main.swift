@@ -67,12 +67,12 @@ var roundCounter = 0
 //
 ////////////////
 
+//set up players' names
 class Player {
     
     var nameOfPlayer: String?
     
     func getPlayerName() {
-        print("when prompted, please enter players' names")
         print(">what's your name ?")
         if let name = readLine() {
             //check name uniqueness
@@ -518,7 +518,7 @@ func chooseFighter0() {
                 if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life > 0){
                     //pass strength points to the fight function
                     fightAgainstTeam1(hit: memberTeam0[i]!.strength)
-                    //if the fighter is dead, relaunch the choose fighter process
+                //if the fighter is dead, relaunch the choose fighter process
                 } else if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life <= 0) {
                     print("we're not rebooting the walking dead here")
                     chooseFighter0()
@@ -585,10 +585,10 @@ func team0FightOrHeal() {
             //if there's no wizard in the team, go fight
             if (nameOfWizard[0] == "") {
                 print("there's no wizard in your team. go fight !\n") ; chooseFighter0()
-                //if the wizard is dead, go fight
+            //if the wizard is dead, go fight
             } else if (wizardLife[0] <= 0) {
                 print("the wizard took the boat with the elves. RIP. now go fight !\n") ; chooseFighter0()
-                //else, go heal
+            //else, go heal
             } else {
                 chooseHeal0()
             }
@@ -697,7 +697,7 @@ func chooseFighter1() {
                 if (memberTeam1[i]!.name == fighter) && (memberTeam1[i]!.life > 0){
                     //pass strength points to the fight function
                     fightAgainstTeam0(hit: memberTeam1[i]!.strength)
-                    //if the fighter is dead, relaunch the choose fighter process
+                //if the fighter is dead, relaunch the choose fighter process
                 } else if (memberTeam1[i]!.name == fighter) && (memberTeam1[i]!.life <= 0) {
                     print("we're not rebooting the walking dead here")
                     chooseFighter1()
@@ -763,10 +763,10 @@ func team1FightOrHeal() {
             //if there's no wizard in the team, go fight
             if (nameOfWizard[1] == "") {
                 print("there's no wizard in your team. go fight !\n") ; chooseFighter1()
-                //if the wizard is dead, go fight
+            //if the wizard is dead, go fight
             } else if (wizardLife[1] <= 0) {
                 print("the wizard took the boat with the elves. RIP. now go fight !\n") ; chooseFighter1()
-                //else, go heal
+            //else, go heal
             } else {
                 chooseHeal1()
             }
@@ -817,6 +817,7 @@ func play() {
 }
 
 //get the name of the players
+print("when prompted, please enter players' names")
 setUpPlayersNames()
 //launch the game
 play()
