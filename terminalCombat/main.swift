@@ -91,6 +91,10 @@ class Player {
     }
 }
 
+//instantiate 2 players
+var player0 = Player()
+var player1 = Player()
+
 //set up characters' names, life and strength points
 class setUp {
     
@@ -171,23 +175,26 @@ class teamMember {
 
 ///////////////
 //
-//MARK: set up player's names
+//MARK: set up players' names
 //
 //////////////
 
 //set up players' names
-var player0 = Player()
-player0.getPlayerName()
+func setUpPlayersNames() {
+    //let player0 = Player()
+    player0.getPlayerName()
+    
+    //let player1 = Player()
+    player1.getPlayerName()
+    
+    
+    print("\n>hello \(player0.nameOfPlayer!) !"
+        + "\n>hello \(player1.nameOfPlayer!) !"
+        + "\n"
+        + "\n>welcome to terminalCombat"
+        + "\n")
+}
 
-var player1 = Player()
-player1.getPlayerName()
-
-
-print("\n>hello \(player0.nameOfPlayer!) !"
-    + "\n>hello \(player1.nameOfPlayer!) !"
-    + "\n"
-    + "\n>welcome to terminalCombat"
-    + "\n")
 
 /////////////////////
 //
@@ -202,75 +209,83 @@ var memberTeam0 = [m00, m01, m02]
 var m10: teamMember? ; var m11: teamMember? ; var m12: teamMember?
 var memberTeam1 = [m10, m11, m12]
 
-//set up team 0
-print("\(playerName[0]) : let's set up your team")
-for i in 0...2 {
-    print("\nfor member \(i + 1):")
-    //instantiate setUp to launch the set up process
-    let _ = setUp()
-    //give name, life and strength temporary values
-    name = bufferName[0]
-    life = bufferValue[0]
-    strength = bufferValue[1]
-    //instantiate team member
-    memberTeam0[i] = teamMember(name: name, life: life, strength: strength)
-    //set value of index 0 of nameOfWizard[] with wizard's name
-    //set value of index 0 of wizardLife[] with wizard's life points
-    if (memberTeam0[i]!.life == 80) {
-        nameOfWizard[0] = memberTeam0[i]!.name
-        wizardLife[0] = memberTeam0[i]!.life
+//give names and type to team 0's members
+func setUpTeam0() {
+    print("\(playerName[0]) : let's set up your team")
+    for i in 0...2 {
+        print("\nfor member \(i + 1):")
+        //instantiate setUp to launch the set up process
+        let _ = setUp()
+        //give name, life and strength temporary values
+        name = bufferName[0]
+        life = bufferValue[0]
+        strength = bufferValue[1]
+        //instantiate team member
+        memberTeam0[i] = teamMember(name: name, life: life, strength: strength)
+        //set value of index 0 of nameOfWizard[] with wizard's name
+        //set value of index 0 of wizardLife[] with wizard's life points
+        if (memberTeam0[i]!.life == 80) {
+            nameOfWizard[0] = memberTeam0[i]!.name
+            wizardLife[0] = memberTeam0[i]!.life
+        }
     }
-}
-
-//create an array of fighters' names
-for i in 0...2 {
-    //avoid wizard
-    if !(nameOfWizard[0] == memberTeam0[i]!.name) {
-        //set values to index in array of team0 fighter names
-        team0FighterName[i] = memberTeam0[i]!.name
-    }
-}
-
-//set up team 1
-print("\n\(playerName[1]) : let's set up your team")
-for i in 0...2 {
-    print("for member \(i + 1):")
-    //instantiate setUp to launch the set up process
-    let _ = setUp()
     
-    name = bufferName[0]
-    life = bufferValue[0]
-    strength = bufferValue[1]
+    //create an array of fighters' names
+    for i in 0...2 {
+        //avoid wizard
+        if !(nameOfWizard[0] == memberTeam0[i]!.name) {
+            //set values to index in array of team0 fighter names
+            team0FighterName[i] = memberTeam0[i]!.name
+        }
+    }
+}
+
+
+//give names and type to team 1's members
+func setUpTeam1() {
+    print("\n\(playerName[1]) : let's set up your team")
+    for i in 0...2 {
+        print("for member \(i + 1):")
+        //instantiate setUp to launch the set up process
+        let _ = setUp()
+        
+        name = bufferName[0]
+        life = bufferValue[0]
+        strength = bufferValue[1]
+        
+        memberTeam1[i] = teamMember(name: name, life: life, strength: strength)
+        //set value of index 1 of nameOfWizard[]
+        //set value of index 1 of wizardLife[] with wizard life points
+        if (memberTeam1[i]!.life == 80) {
+            nameOfWizard[1] = memberTeam1[i]!.name
+            wizardLife[1] = memberTeam1[i]!.life
+        }
+    }
     
-    memberTeam1[i] = teamMember(name: name, life: life, strength: strength)
-    //set value of index 1 of nameOfWizard[]
-    //set value of index 1 of wizardLife[] with wizard life points
-    if (memberTeam1[i]!.life == 80) {
-        nameOfWizard[1] = memberTeam1[i]!.name
-        wizardLife[1] = memberTeam1[i]!.life
+    
+    //set index values in array of fighters' names for team 1
+    for i in 0...2 {
+        //avoid wizard
+        if !(nameOfWizard[1] == memberTeam1[i]!.name) {
+            //give fighters names values to index array of team0 fighter names
+            team1FighterName[i] = memberTeam1[i]!.name
+        }
     }
 }
-
-
-//set index values in array of fighters' names for team 1
-for i in 0...2 {
-    //avoid wizard
-    if !(nameOfWizard[1] == memberTeam1[i]!.name) {
-        //give fighters names values to index array of team0 fighter names
-        team1FighterName[i] = memberTeam1[i]!.name
-    }
-}
-
-print("\ngreat ! let's summarize\n")
 
 //print each player's team (name, life and strength points)
-for j in 0...1 {
-    print("\(playerName[j]), here is your team :")
-    for i in 0...2 {
-        memberTeam0[i]!.summarize()
+func summarizeSetUp() {
+    print("\ngreat ! let's summarize\n")
+    
+    for j in 0...1 {
+        print("\(playerName[j]), here is your team :")
+        for i in 0...2 {
+            memberTeam0[i]!.summarize()
+        }
+        print("\n=================\n\n")
     }
-    print("\n=================\n\n")
 }
+
 
 /////////////////////////////
 //
@@ -337,11 +352,19 @@ func killAll(player: Int) {
     if (player == 0) {
         //set team 1 life points to 0
         lifeTeam1 = [Int](repeating: 0, count: 3)
-    //if player 1 enter the cheat code
+        //if player 1 enter the cheat code
     } else if (player == 1) {
         //set team 0 life points to 0
         lifeTeam0 = [Int](repeating: 0, count: 3)
     }
+    //reset names
+    for _ in nameInGame {
+        nameInGame = [""]
+    }
+    bufferName = [""]
+    nameOfWizard = ["", "", "", "", "", ""]
+    team0FighterName = ["", "", ""]
+    team1FighterName = ["", "", ""]
     lifeLevels()
 }
 
@@ -556,16 +579,16 @@ func team0FightOrHeal() {
     if let choice = readLine() {
         switch choice {
         //launch a combat turn
-        case "1": print("let's fight then !\n") ; chooseFighter0()
+        case "1": print("let's fight !\n") ; chooseFighter0()
         //heal
         case "2":
             //if there's no wizard in the team, go fight
             if (nameOfWizard[0] == "") {
                 print("there's no wizard in your team. go fight !\n") ; chooseFighter0()
-            //if the wizard is dead, go fight
+                //if the wizard is dead, go fight
             } else if (wizardLife[0] <= 0) {
                 print("the wizard took the boat with the elves. RIP. now go fight !\n") ; chooseFighter0()
-            //else, go heal
+                //else, go heal
             } else {
                 chooseHeal0()
             }
@@ -734,16 +757,16 @@ func team1FightOrHeal() {
     if let choice = readLine() {
         switch choice {
         //launch a combat turn
-        case "1": print("let's fight then !\n") ; chooseFighter1()
+        case "1": print("let's fight !\n") ; chooseFighter1()
         //heal
         case "2":
             //if there's no wizard in the team, go fight
             if (nameOfWizard[1] == "") {
                 print("there's no wizard in your team. go fight !\n") ; chooseFighter1()
-            //if the wizard is dead, go fight
+                //if the wizard is dead, go fight
             } else if (wizardLife[1] <= 0) {
                 print("the wizard took the boat with the elves. RIP. now go fight !\n") ; chooseFighter1()
-            //else, go heal
+                //else, go heal
             } else {
                 chooseHeal1()
             }
@@ -780,6 +803,10 @@ func playAgain() {
 //while team member's life > 0
 func play() {
     print("let's get to it !")
+    setUpTeam0()
+    setUpTeam1()
+    //print names, life and strength points of each team
+    summarizeSetUp()
     //while alive() is true, each player has its round
     while (alive(counter: roundCounter)) {
         team0FightOrHeal()
@@ -789,6 +816,8 @@ func play() {
     playAgain()
 }
 
+//get the name of the players
+setUpPlayersNames()
 //launch the game
 play()
 
