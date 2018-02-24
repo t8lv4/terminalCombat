@@ -9,6 +9,7 @@
 //
 
 import Foundation
+import Cocoa
 
 ////////////////
 //
@@ -60,6 +61,51 @@ var cureLife = Int()
 
 //a counter to go along team life's levels report
 var roundCounter = 0
+
+//default value for wait(delay: UInt32) and waitAndClearTty(delay: UInt32)
+let time: UInt32 = 1
+
+///////////////////
+//
+//MARK: utilities
+//
+//////////////////
+
+class Utilities {
+    //prefered web browser open README.md @ github
+    func openRules() {
+        if let url = URL(string: "https://github.com/t8lv4/terminalCombat/blob/master/README.md") {
+            NSWorkspace.shared.open(url)
+            print("your web browser should have opend the rules by now."
+                + "\nif not, please copy and paste this url :"
+                + "\nhttps://tinyurl.com/y9g23tcg\n"
+                + "\nonce you've done with the rules...\n")
+        }
+    }
+    
+    //write command to tty
+    func shell(_ args: String...) {
+        let task = Process()
+        task.launchPath = "/usr/bin/env"
+        task.arguments = args
+        task.launch()
+        task.waitUntilExit()
+    }
+    
+    //delay next instruction in the main thread
+    func wait(delay: UInt32) {
+        sleep(delay)
+    }
+    
+    //delay clearing of the tty window
+    func waitAndClearTty(delay: UInt32) {
+        sleep(delay)
+        shell("clear")
+    }
+}
+
+//instantiate
+let utilities = Utilities()
 
 ////////////////
 //
@@ -187,12 +233,17 @@ func setUpPlayersNames() {
     //let player1 = Player()
     player1.getPlayerName()
     
+    print(">hello \(player0.nameOfPlayer!) !"
+        + "\n>hello \(player1.nameOfPlayer!) !")
     
-    print("\n>hello \(player0.nameOfPlayer!) !"
-        + "\n>hello \(player1.nameOfPlayer!) !"
-        + "\n"
-        + "\n>welcome to terminalCombat"
-        + "\n")
+    //call to wait before clearing tty's window
+    utilities.waitAndClearTty(delay: time)
+    
+    print(">welcome to terminalCombat")
+    utilities.waitAndClearTty(delay: time)
+    
+    //open readm.md @ github
+    utilities.openRules()
 }
 
 
@@ -213,7 +264,7 @@ var memberTeam1 = [m10, m11, m12]
 func setUpTeam0() {
     print("\(playerName[0]) : let's set up your team")
     for i in 0...2 {
-        print("\nfor member \(i + 1):")
+        print("for member \(i + 1):")
         //instantiate setUp to launch the set up process
         let _ = setUp()
         //give name, life and strength temporary values
@@ -228,6 +279,8 @@ func setUpTeam0() {
             nameOfWizard[0] = memberTeam0[i]!.name
             wizardLife[0] = memberTeam0[i]!.life
         }
+        //clear tty window
+        utilities.shell("clear")
     }
     
     //create an array of fighters' names
@@ -243,7 +296,7 @@ func setUpTeam0() {
 
 //give names and type to team 1's members
 func setUpTeam1() {
-    print("\n\(playerName[1]) : let's set up your team")
+    print("\(playerName[1]) : let's set up your team")
     for i in 0...2 {
         print("for member \(i + 1):")
         //instantiate setUp to launch the set up process
@@ -260,6 +313,8 @@ func setUpTeam1() {
             nameOfWizard[1] = memberTeam1[i]!.name
             wizardLife[1] = memberTeam1[i]!.life
         }
+        //clear tty window
+        utilities.shell("clear")
     }
     
     
@@ -267,7 +322,7 @@ func setUpTeam1() {
     for i in 0...2 {
         //avoid wizard
         if !(nameOfWizard[1] == memberTeam1[i]!.name) {
-            //give fighters names values to index array of team0 fighter names
+            //give fighters' names values to index array of team0 fighter names
             team1FighterName[i] = memberTeam1[i]!.name
         }
     }
@@ -275,7 +330,7 @@ func setUpTeam1() {
 
 //print each player's team (name, life and strength points)
 func summarizeSetUp() {
-    print("\ngreat ! let's summarize\n")
+    print("great ! let's summarize\n")
     
     for j in 0...1 {
         print("\(playerName[j]), here is your team :")
@@ -284,6 +339,7 @@ func summarizeSetUp() {
         }
         print("\n=================\n\n")
     }
+    utilities.waitAndClearTty(delay: 10)
 }
 
 
@@ -324,7 +380,7 @@ func alive(counter: Int) -> Bool {
         }
     }
     roundCounter += 1
-    print("\nround \(roundCounter)")
+    print("round \(roundCounter)")
     lifeLevels()
     return test
 }
@@ -332,11 +388,13 @@ func alive(counter: Int) -> Bool {
 //print new life points of opponent after combat, check for liveness
 //call from fightAgainstTeamX()
 func report(casualty: String, level: Int) {
-    print("\nafter this combat, \(opponent) has \(level) life points left\n")
+    utilities.shell("clear")
+    print("after this combat, \(opponent) has \(level) life points left\n")
     //check for liveness
     if (level <= 0) {
         print("\(opponent), you're out of this game !\n")
     }
+    utilities.waitAndClearTty(delay: 3)
 }
 
 ////////////////////////
@@ -347,7 +405,7 @@ func report(casualty: String, level: Int) {
 
 //set opponent life levels at 0, kill the game
 func killAll(player: Int) {
-    print("\nan easter egg is found !"
+    print("an easter egg is found !"
         + "\nand it's a nasty one : THIS is a KILL ALL !\n")
     //if player 0 enter the cheat code
     if (player == 0) {
@@ -416,7 +474,7 @@ func heal(wound: Int) -> Int{
     //if there's a special weapon this round
     if (happyWeapon == 1) {
         cureLife += 20
-    //default
+        //default
     } else {
         cureLife += 10
     }
@@ -451,7 +509,7 @@ func chooseOpponent1() {
             if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life > 0){
                 //give opponent choice value (ie the name of the fighter)
                 opponent = choice
-            //you don't want to fight a dead, so now you actually *can't* fight a dead
+                //you don't want to fight a dead, so now you actually *can't* fight a dead
             } else if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life <= 0) {
                 print("\nchill, \(memberTeam1[i]!.name) is already dead...\n")
                 chooseOpponent1()
@@ -482,7 +540,7 @@ func fightAgainstTeam1(hit: Int) {
                 memberTeam1[i]!.life -= (hit*2)
                 //give the new life value to newLifePoints
                 newLifePoints = memberTeam1[i]!.life
-            //default behavior
+                //default behavior
             } else {
                 memberTeam1[i]!.life -= hit
                 newLifePoints = memberTeam1[i]!.life
@@ -520,7 +578,7 @@ func chooseFighter0() {
                 if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life > 0){
                     //pass strength points to the fight function
                     fightAgainstTeam1(hit: memberTeam0[i]!.strength)
-                //if the fighter is dead, relaunch the choose fighter process
+                    //if the fighter is dead, relaunch the choose fighter process
                 } else if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life <= 0) {
                     print("we're not rebooting the walking dead here")
                     chooseFighter0()
@@ -552,7 +610,7 @@ func chooseHeal0() {
         if nameOfWizard.contains(choice) {
             print("a wizard can't cure himself\n")
             chooseHeal0()
-        //check if input is valid
+            //check if input is valid
         } else if team0FighterName.contains(choice){
             //scan the members to find a match
             for i in 0...2 {
@@ -562,9 +620,10 @@ func chooseHeal0() {
                     memberTeam0[i]!.life = heal(wound: cureLife)
                     //print new life value
                     print("\(memberTeam0[i]!.name) has now \(memberTeam0[i]!.life) life points\n")
+                    utilities.waitAndClearTty(delay: 2)
                 }
             }
-        //invalid input, try again
+            //invalid input, try again
         } else {
             print("i didn't get it, please try again")
             chooseHeal0()
@@ -581,23 +640,24 @@ func team0FightOrHeal() {
     if let choice = readLine() {
         switch choice {
         //launch a combat turn
-        case "1": print("let's fight !\n") ; chooseFighter0()
+        case "1": utilities.shell("clear") ; print("let's fight !\n") ; chooseFighter0()
         //heal
         case "2":
+            utilities.shell("clear")
             //if there's no wizard in the team, go fight
             if (nameOfWizard[0] == "") {
                 print("there's no wizard in your team. go fight !\n") ; chooseFighter0()
-            //if the wizard is dead, go fight
+                //if the wizard is dead, go fight
             } else if (wizardLife[0] <= 0) {
                 print("the wizard took the boat with the elves. RIP. now go fight !\n") ; chooseFighter0()
-            //else, go heal
+                //else, go heal
             } else {
                 chooseHeal0()
             }
         //cheat code launch killAll()
-        case "fukushima": killAll(player: 0)
+        case "fukushima": utilities.shell("clear") ; killAll(player: 0)
         //invalid input
-        default: print("i didn't get it")
+        default: utilities.shell("clear") ; print("i didn't get it")
         team0FightOrHeal()
         }
     }
@@ -630,13 +690,13 @@ func chooseOpponent0() {
             if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life > 0){
                 //give opponent choice value (ie the name of the fighter)
                 opponent = choice
-            //you don't want to fight a dead, so now you actually *can't* fight a dead
+                //you don't want to fight a dead, so now you actually *can't* fight a dead
             } else if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life <= 0) {
                 print("\nchill, \(memberTeam0[i]!.name) is already dead...\n")
                 chooseOpponent0()
             }
         }
-    //input is invalid
+        //input is invalid
     } else {
         print("i didn't get it"
             + "\nplease try again")
@@ -661,7 +721,7 @@ func fightAgainstTeam0(hit: Int) {
                 memberTeam0[i]!.life -= (hit*2)
                 //give the new life value to newLifePoints
                 newLifePoints = memberTeam0[i]!.life
-            //default behavior
+                //default behavior
             } else {
                 memberTeam0[i]!.life -= hit
                 newLifePoints = memberTeam0[i]!.life
@@ -699,13 +759,13 @@ func chooseFighter1() {
                 if (memberTeam1[i]!.name == fighter) && (memberTeam1[i]!.life > 0){
                     //pass strength points to the fight function
                     fightAgainstTeam0(hit: memberTeam1[i]!.strength)
-                //if the fighter is dead, relaunch the choose fighter process
+                    //if the fighter is dead, relaunch the choose fighter process
                 } else if (memberTeam1[i]!.name == fighter) && (memberTeam1[i]!.life <= 0) {
                     print("we're not rebooting the walking dead here")
                     chooseFighter1()
                 }
             }
-        //input name is invalid
+            //input name is invalid
         } else {
             print("i didn't get it")
             chooseFighter1()
@@ -731,7 +791,7 @@ func chooseHeal1() {
         if nameOfWizard.contains(choice) {
             print("a wizard can't cure himself\n")
             chooseHeal1()
-        //check if input is valid
+            //check if input is valid
         } else if team1FighterName.contains(choice){
             //scan the members to find a match
             for i in 0...2 {
@@ -741,9 +801,10 @@ func chooseHeal1() {
                     memberTeam1[i]!.life = heal(wound: cureLife)
                     //print new life value
                     print("\(memberTeam1[i]!.name) has now \(memberTeam1[i]!.life) life points\n")
+                    utilities.waitAndClearTty(delay: 2)
                 }
             }
-        //input name is invalid
+            //input name is invalid
         } else {
             print("i didn't get it, please try again")
             chooseHeal1()
@@ -759,21 +820,22 @@ func team1FightOrHeal() {
     if let choice = readLine() {
         switch choice {
         //launch a combat turn
-        case "1": print("let's fight !\n") ; chooseFighter1()
+        case "1": utilities.shell("clear") ; print("let's fight !\n") ; chooseFighter1()
         //heal
         case "2":
+            utilities.shell("clear")
             //if there's no wizard in the team, go fight
             if (nameOfWizard[1] == "") {
                 print("there's no wizard in your team. go fight !\n") ; chooseFighter1()
-            //if the wizard is dead, go fight
+                //if the wizard is dead, go fight
             } else if (wizardLife[1] <= 0) {
                 print("the wizard took the boat with the elves. RIP. now go fight !\n") ; chooseFighter1()
-            //else, go heal
+                //else, go heal
             } else {
                 chooseHeal1()
             }
-        case "fukushima": killAll(player: 1)
-        default: print("i didn't get it")
+        case "fukushima": utilities.shell("clear") ; killAll(player: 1)
+        default: utilities.shell("clear") ; print("i didn't get it")
         team1FightOrHeal()
         }
     }
@@ -792,11 +854,11 @@ func playAgain() {
     if let choice = readLine() {
         switch choice {
         //reset round counter, call play to relaunch the game
-        case "y": roundCounter = 0 ; play()
+        case "y": utilities.shell("clear") ; roundCounter = 0 ; play()
         //stop the game
-        case "n": print("fair enough. shutdown now.") ; exit(0)
+        case "n": utilities.shell("clear") ; print("fair enough. shutdown now.") ; exit(0)
         //invalid input
-        default: print("i didn't get it") ; playAgain()
+        default: utilities.shell("clear") ; print("i didn't get it") ; playAgain()
         }
     }
 }
