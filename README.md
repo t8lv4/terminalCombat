@@ -1,7 +1,3 @@
-# Table of content
-
-[TOC]
-
 
 
 # What is terminalCombat ?
