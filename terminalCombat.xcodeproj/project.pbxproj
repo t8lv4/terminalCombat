@@ -7,7 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9014D9FF2041B90600BC41E9 /* TeamMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014D9FE2041B90600BC41E9 /* TeamMember.swift */; };
+		9014DA012041BFD700BC41E9 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014DA002041BFD700BC41E9 /* Launch.swift */; };
+		9014DA032041C04F00BC41E9 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014DA022041C04F00BC41E9 /* Report.swift */; };
+		9014DA052041C1D800BC41E9 /* EasterEgg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014DA042041C1D800BC41E9 /* EasterEgg.swift */; };
+		9014DA072041C46E00BC41E9 /* HappyRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014DA062041C46E00BC41E9 /* HappyRound.swift */; };
+		9014DA092041C59A00BC41E9 /* WizardSpell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014DA082041C59A00BC41E9 /* WizardSpell.swift */; };
+		9014DA0B2041C98000BC41E9 /* SetUpPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014DA0A2041C98000BC41E9 /* SetUpPlayers.swift */; };
+		9014DA0D2041CB5F00BC41E9 /* SetUpTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014DA0C2041CB5F00BC41E9 /* SetUpTeams.swift */; };
+		9014DA0F2041CDB100BC41E9 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014DA0E2041CDB100BC41E9 /* Round.swift */; };
 		902A397A20342149008CFBF5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A397920342149008CFBF5 /* main.swift */; };
+		90CA976B2041B4A6000407FD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CA976A2041B4A6000407FD /* Utilities.swift */; };
+		90CA976D2041B5FD000407FD /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CA976C2041B5FD000407FD /* Player.swift */; };
+		90DF57C82041B7C2007A68FC /* SetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DF57C72041B7C2007A68FC /* SetUp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +35,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9014D9FE2041B90600BC41E9 /* TeamMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeamMember.swift; path = terminalCombat/TeamMember.swift; sourceTree = "<group>"; };
+		9014DA002041BFD700BC41E9 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Launch.swift; path = terminalCombat/Launch.swift; sourceTree = "<group>"; };
+		9014DA022041C04F00BC41E9 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Report.swift; path = terminalCombat/Report.swift; sourceTree = "<group>"; };
+		9014DA042041C1D800BC41E9 /* EasterEgg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EasterEgg.swift; path = terminalCombat/EasterEgg.swift; sourceTree = "<group>"; };
+		9014DA062041C46E00BC41E9 /* HappyRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HappyRound.swift; path = terminalCombat/HappyRound.swift; sourceTree = "<group>"; };
+		9014DA082041C59A00BC41E9 /* WizardSpell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WizardSpell.swift; path = terminalCombat/WizardSpell.swift; sourceTree = "<group>"; };
+		9014DA0A2041C98000BC41E9 /* SetUpPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetUpPlayers.swift; path = terminalCombat/SetUpPlayers.swift; sourceTree = "<group>"; };
+		9014DA0C2041CB5F00BC41E9 /* SetUpTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetUpTeams.swift; path = terminalCombat/SetUpTeams.swift; sourceTree = "<group>"; };
+		9014DA0E2041CDB100BC41E9 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Round.swift; path = terminalCombat/Round.swift; sourceTree = "<group>"; };
 		902A397620342149008CFBF5 /* terminalCombat */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = terminalCombat; sourceTree = BUILT_PRODUCTS_DIR; };
 		902A397920342149008CFBF5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		90CA976A2041B4A6000407FD /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = terminalCombat/Utilities.swift; sourceTree = "<group>"; };
+		90CA976C2041B5FD000407FD /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Player.swift; path = terminalCombat/Player.swift; sourceTree = "<group>"; };
+		90DF57C72041B7C2007A68FC /* SetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetUp.swift; path = terminalCombat/SetUp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +65,18 @@
 		902A396D20342149008CFBF5 = {
 			isa = PBXGroup;
 			children = (
+				9014DA0E2041CDB100BC41E9 /* Round.swift */,
+				9014DA0A2041C98000BC41E9 /* SetUpPlayers.swift */,
+				9014DA0C2041CB5F00BC41E9 /* SetUpTeams.swift */,
+				9014DA002041BFD700BC41E9 /* Launch.swift */,
+				9014DA022041C04F00BC41E9 /* Report.swift */,
+				9014DA042041C1D800BC41E9 /* EasterEgg.swift */,
+				9014DA062041C46E00BC41E9 /* HappyRound.swift */,
+				9014DA082041C59A00BC41E9 /* WizardSpell.swift */,
+				90CA976A2041B4A6000407FD /* Utilities.swift */,
+				90CA976C2041B5FD000407FD /* Player.swift */,
+				9014D9FE2041B90600BC41E9 /* TeamMember.swift */,
+				90DF57C72041B7C2007A68FC /* SetUp.swift */,
 				902A397820342149008CFBF5 /* terminalCombat */,
 				902A397720342149008CFBF5 /* Products */,
 			);
@@ -120,6 +156,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90CA976B2041B4A6000407FD /* Utilities.swift in Sources */,
+				9014DA052041C1D800BC41E9 /* EasterEgg.swift in Sources */,
+				9014DA0D2041CB5F00BC41E9 /* SetUpTeams.swift in Sources */,
+				90CA976D2041B5FD000407FD /* Player.swift in Sources */,
+				9014DA092041C59A00BC41E9 /* WizardSpell.swift in Sources */,
+				9014D9FF2041B90600BC41E9 /* TeamMember.swift in Sources */,
+				9014DA032041C04F00BC41E9 /* Report.swift in Sources */,
+				90DF57C82041B7C2007A68FC /* SetUp.swift in Sources */,
+				9014DA0B2041C98000BC41E9 /* SetUpPlayers.swift in Sources */,
+				9014DA012041BFD700BC41E9 /* Launch.swift in Sources */,
+				9014DA0F2041CDB100BC41E9 /* Round.swift in Sources */,
+				9014DA072041C46E00BC41E9 /* HappyRound.swift in Sources */,
 				902A397A20342149008CFBF5 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
