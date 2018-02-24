@@ -8,7 +8,17 @@ terminalCombat is a RPG for two players, meant to be played on a terminal.
 
 # How do you play terminalCombat ?
 
-double click on the terminalCombat file. you'll be prompted to enter the name of the players.
+download `main.swift`
+
+in the terminal, type
+
+`$ cd where/the/main.swift/file/is`
+
+then
+
+`$ swift main.swift`
+
+you'll be prompted to enter the name of the players.
 
 
 
@@ -34,6 +44,8 @@ once set up is done, a player choose to fight a member of the other team or to h
 from time to time, a special gift pops up. it doubles the fighter or the wizard strength points during the round.
 
 the game ends and a winner is declared when there are no life points left in a team.
+
+
 
 
 
