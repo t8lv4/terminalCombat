@@ -8,17 +8,17 @@ terminalCombat is a RPG for two players, meant to be played on a terminal.
 
 # How do you play terminalCombat ?
 
-download `main.swift`
+download `terminalCombat`
 
-in the terminal, type
+in the terminal :
 
-`$ cd where/the/main.swift/file/is`
+`$ cd where/the/file/is/downloaded`
 
-then
+`$ unzip terminalCombat`
 
-`$ swift main.swift`
+`$ open terminalCombat`
 
-you'll be prompted to enter the name of the players.
+you'll be prompted to enter the name of the players !
 
 
 
@@ -36,8 +36,8 @@ players set up a team of three members. they can choose from a list of four char
 
 once set up is done, a player choose to fight a member of the other team or to heal a member of his team.
 
-+ the player choose to fight :  he'll be promped to choose a fighter (he can't fight with a wizard) and an opponent (wizards included). the strength points of the fighter is subtracted from the life points of the opponent.
-+ the player choose to heal : he'll be prompted to choose a fighter to cure. the strength points of the wizard is added to the life points of the chosen fighter. the wizard can't cure himself.
++ a player choose to fight :  he'll be promped to choose a fighter (he can't fight with a wizard) and an opponent (wizards included). the strength points of the fighter is subtracted from the life points of the opponent.
++ a player choose to heal : he'll be prompted to choose a fighter to cure. the strength points of the wizard is added to the life points of the chosen fighter. the wizard can't cure himself.
 
 
 
@@ -47,6 +47,8 @@ the game ends and a winner is declared when there are no life points left in a t
 
 
 
+--
 
 
-also, there's an easter egg.
+
+also, there is an easter egg.
