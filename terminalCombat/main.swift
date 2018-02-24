@@ -304,6 +304,7 @@ func lifeLevels() {
         playAgain()
     } else if (lifeTeam1.reduce(0, +) == 0) {
         print("congrats \(player0.nameOfPlayer!) ! you win this game !\n")
+        //prompt to relaunch the game
         playAgain()
     }
 }
@@ -365,6 +366,7 @@ func killAll(player: Int) {
     nameOfWizard = ["", "", "", "", "", ""]
     team0FighterName = ["", "", ""]
     team1FighterName = ["", "", ""]
+    //call lifeLevels()
     lifeLevels()
 }
 
