@@ -2,7 +2,9 @@
 
 # What is terminalCombat ?
 
-terminalCombat is a RPG for two players, meant to be played on a terminal.
+terminalCombat is a fighting game for two players.
+
+it's meant to be played on a terminal.
 
 
 
@@ -10,13 +12,15 @@ terminalCombat is a RPG for two players, meant to be played on a terminal.
 
 download `terminalCombat`
 
-in the terminal :
+in the terminal : 
 
-`$ cd where/the/file/is/downloaded`
+```bash
+cd where/the/file/is/downloaded
+unzip terminalCombat
+open terminalCombat
+```
 
-`$ unzip terminalCombat`
 
-`$ open terminalCombat`
 
 you'll be prompted to enter the name of the players !
 
@@ -24,7 +28,7 @@ you'll be prompted to enter the name of the players !
 
 # What are the rules of terminalCombat ?
 
-players set up a team of three members. they can choose from a list of four character's types.
+players set up a team of three members. they can choose from a list of four character's types :
 
 + a fighter has 100 life points and 10 strength points
 + a giant has 140 life points and 5 strength points
