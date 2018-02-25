@@ -15,9 +15,9 @@ download `terminalCombat`
 in the terminal : 
 
 ```bash
-cd where/the/file/is/downloaded
-unzip terminalCombat
-open terminalCombat
+$ cd where/the/file/is/downloaded
+$ unzip terminalCombat
+$ open terminalCombat
 ```
 
 

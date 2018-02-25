@@ -3,7 +3,7 @@
 //  terminalCombat
 //
 //  Created by Morgan on 24/02/2018.
-//  Copyright © 2018 Morgan. All rights reserved.
+// 
 //
 
 import Foundation
