@@ -6,7 +6,6 @@
 // 
 //
 
-import Foundation
 
 //set up characters' names, life and strength points
 class SetUp {
@@ -21,13 +20,13 @@ class SetUp {
         print("enter a unique name")
         if let name = readLine() {
             //check name uniqueness
-            if nameInGame.contains(name) {
+            if GlobalProperties.nameInGame.contains(name) {
                 print("please choose another name : "
                     + "\nthis name is already in use, your choice is not valid.\n")
                 setName()
             } else {
                 //append the nameInGame array
-                nameInGame.append(name)
+                GlobalProperties.nameInGame.append(name)
                 //pass value to a buffer to set team members' names
                 bufferName[0] = name
             }

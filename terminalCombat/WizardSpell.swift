@@ -6,19 +6,19 @@
 //  
 //
 
-import Foundation
+
 
 //add wizard's strength value to life points, call from chooseHealX()
 class WizardSpell {
     
     func heal(wound: Int) -> Int{
         //if there's a special weapon this round
-        if (happyWeapon == 1) {
-            cureLife += 20
+        if (GlobalProperties.happyWeapon == 1) {
+            GlobalProperties.cureLife += 20
             //default
         } else {
-            cureLife += 10
+            GlobalProperties.cureLife += 10
         }
-        return cureLife
+        return GlobalProperties.cureLife
     }
 }

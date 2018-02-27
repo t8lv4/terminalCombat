@@ -6,7 +6,7 @@
 //  
 //
 
-import Foundation
+
 
 //set up players' names
 class Player {
@@ -17,7 +17,7 @@ class Player {
         print(">what's your name ?")
         if let name = readLine() {
             //check name uniqueness
-            if nameInGame.contains(name) {
+            if GlobalProperties.nameInGame.contains(name) {
                 print("your choice is not valid or this name is already in use"
                     + "\nplease choose another name")
                 getPlayerName()
@@ -25,8 +25,8 @@ class Player {
                 //set name
                 nameOfPlayer = name
                 //append arrays to further check name uniqueness
-                playerName.append(name)
-                nameInGame.append(name)
+                GlobalProperties.playerName.append(name)
+                GlobalProperties.nameInGame.append(name)
             }
         }
     }

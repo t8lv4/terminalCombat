@@ -6,7 +6,7 @@
 //  
 //
 
-import Foundation
+import Cocoa
 
 //launch and relaunch the game
 class Launch {
@@ -16,7 +16,7 @@ class Launch {
         if let choice = readLine() {
             switch choice {
             //reset round counter, call play to relaunch the game
-            case "y": utilities.shell("clear") ; roundCounter = 0 ; play()
+            case "y": utilities.shell("clear") ; GlobalProperties.roundCounter = 0 ; play()
             //stop the game
             case "n": utilities.shell("clear") ; print("fair enough. shutdown now.") ; exit(0)
             //invalid input
@@ -34,7 +34,7 @@ class Launch {
         //print names, life and strength points of each team
         setUpTeams.summarizeSetUp()
         //while alive() is true, each player has its round
-        while (report.alive(counter: roundCounter)) {
+        while (report.alive(counter: GlobalProperties.roundCounter)) {
             round.team0FightOrHeal()
             round.team1FightOrHeal()
         }

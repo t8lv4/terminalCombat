@@ -35,7 +35,7 @@ class HappyRound {
     //if there's a random weapon this round, call to set happyWeapon value to 1 and call to print the good news
     func randomWeaponProcess() {
         if (randomWeapon() == true) {
-            happyWeapon = 1
+            GlobalProperties.happyWeapon = 1
             printNews()
         }
     }

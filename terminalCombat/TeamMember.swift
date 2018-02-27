@@ -6,9 +6,8 @@
 //  
 //
 
-import Foundation
 
-//characters' name, life and strength
+//set up characters' names, life and strength points
 class TeamMember {
     
     var name: String
@@ -29,3 +28,4 @@ class TeamMember {
         }
     }
 }
+

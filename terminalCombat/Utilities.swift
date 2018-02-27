@@ -6,7 +6,6 @@
 //  
 //
 
-import Foundation
 import Cocoa
 
 //open rules, write command to bash, delay next instruction
