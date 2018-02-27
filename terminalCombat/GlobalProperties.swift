@@ -45,8 +45,3 @@ class GlobalProperties {
     static let time: UInt32 = 1
     
 }
-
-//to temporarily store character's life and strength values during init() setUp
-var bufferValue = [0, 0]
-//to temporarily store character's name
-var bufferName = [""]

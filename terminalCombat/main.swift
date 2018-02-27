@@ -11,21 +11,6 @@
 import Foundation
 import Cocoa
 
-//MARK: global variables
-
-//create var to pass value at memberTeam[]'s instantiation
-var name = String()
-var life = Int()
-var strength = Int()
-
-//create arrays of teams' members
-var m00: TeamMember? ; var m01: TeamMember? ; var m02: TeamMember?
-var memberTeam0 = [m00, m01, m02]
-
-var m10: TeamMember? ; var m11: TeamMember? ; var m12: TeamMember?
-var memberTeam1 = [m10, m11, m12]
-
-
 //MARK: instantiation
 
 //MARK: instantiate utilities
