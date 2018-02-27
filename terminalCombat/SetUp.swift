@@ -28,7 +28,7 @@ class SetUp {
                 //append the nameInGame array
                 GlobalProperties.nameInGame.append(name)
                 //pass value to a buffer to set team members' names
-                bufferName[0] = name
+                Buffer.bufferName[0] = name
             }
         }
     }
@@ -57,7 +57,7 @@ class SetUp {
     
     //temporarily store values during each instantiation of setUp
     func useBuffer(life: Int, strength: Int) {
-        bufferValue[0] = life
-        bufferValue[1] = strength
+      Buffer.bufferValue[0] = life
+      Buffer.bufferValue[1] = strength
     }
 }

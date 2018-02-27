@@ -12,6 +12,11 @@
 //print teams values
 class SetUpTeams {
     
+    //create var to pass value at memberTeam[]'s instantiation
+    var name = String()
+    var life = Int()
+    var strength = Int()
+    
     /////////////////////
     //
     //MARK: set up team 0
@@ -20,15 +25,16 @@ class SetUpTeams {
     
     //give names and character's type to team 0's members
     func setUpTeam0() {
+        
         print("\(GlobalProperties.playerName[0]) : let's set up your team")
         for i in 0...2 {
             print("for member \(i + 1):")
             //instantiate setUp to launch the set up process
             let _ = SetUp()
             //give name, life and strength temporary values
-            name = bufferName[0]
-            life = bufferValue[0]
-            strength = bufferValue[1]
+            self.name = Buffer.bufferName[0]
+            self.life = Buffer.bufferValue[0]
+            self.strength = Buffer.bufferValue[1]
             //instantiate team member
             memberTeam0[i] = TeamMember(name: name, life: life, strength: strength)
             //set value of index 0 of nameOfWizard[] with wizard's name
@@ -65,9 +71,9 @@ class SetUpTeams {
             //instantiate setUp to launch the set up process
             let _ = SetUp()
             
-            name = bufferName[0]
-            life = bufferValue[0]
-            strength = bufferValue[1]
+            self.name = Buffer.bufferName[0]
+            self.life = Buffer.bufferValue[0]
+            self.strength = Buffer.bufferValue[1]
             
             memberTeam1[i] = TeamMember(name: name, life: life, strength: strength)
             //set value of index 1 of nameOfWizard[]
