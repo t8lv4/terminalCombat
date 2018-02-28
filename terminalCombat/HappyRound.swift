@@ -9,8 +9,9 @@
 import Foundation
 
 //enhance strength of the player
-//randomly, one round only
+//happens randomly, one round only
 class HappyRound {
+    
     //if true, there's a new weapon (or cure) during this round
     func randomWeapon() -> Bool {
         let diceRoll = Int(arc4random_uniform(100) + 1)

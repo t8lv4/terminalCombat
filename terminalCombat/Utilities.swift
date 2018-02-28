@@ -10,6 +10,7 @@ import Cocoa
 
 //open rules, write command to bash, delay next instruction
 class Utilities {
+    
     //prefered web browser open README.md @ github
     func openRules() {
         if let url = URL(string: "https://github.com/t8lv4/terminalCombat/blob/master/README.md") {

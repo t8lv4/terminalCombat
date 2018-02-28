@@ -34,7 +34,7 @@ class Report {
         print("after this combat, \(GlobalProperties.opponent) has \(level) life points left\n")
         //check for liveness
         if (level <= 0) {
-            print("\(GlobalProperties.opponent), you're out of this game !\n")
+            print("\(GlobalProperties.opponent), you are so out of this game !\n")
         }
         utilities.waitAndClearTty(delay: 3)
     }
@@ -42,17 +42,20 @@ class Report {
     //return boolean to while loop : if test is false, end the game, call from play()
     func alive(counter: Int) -> Bool {
         var test = Bool()
+        
         for i in 0...2 {
             //set level of life points values to index of each lifeTeam array
             GlobalProperties.lifeTeam0[i] = memberTeam0[i]!.life
             GlobalProperties.lifeTeam1[i] = memberTeam1[i]!.life
+            
             //test sum of values in lifeTeam array
-            if (GlobalProperties.lifeTeam0.reduce(0, +) == 0) || (GlobalProperties.lifeTeam1.reduce(0, +) == 0) {
+            if (GlobalProperties.lifeTeam0.reduce(0, +) <= 0) || (GlobalProperties.lifeTeam1.reduce(0, +) <= 0) {
                 test = false
             } else {
                 test = true
             }
         }
+        
         GlobalProperties.roundCounter += 1
         print("round \(GlobalProperties.roundCounter)")
         lifeLevels()

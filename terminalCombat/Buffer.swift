@@ -11,6 +11,7 @@ class Buffer {
     
     //temporarily store character's life and strength values
     static var bufferValue = [0, 0]
+    
     //temporarily store character's name
     static var bufferName = [""]
     

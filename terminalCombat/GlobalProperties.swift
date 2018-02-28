@@ -7,6 +7,7 @@
 
 //variables and arrays found all around
 class GlobalProperties {
+    
     //array of player's names
     static var playerName = [String]()
     

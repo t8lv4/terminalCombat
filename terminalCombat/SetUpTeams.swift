@@ -31,12 +31,15 @@ class SetUpTeams {
             print("for member \(i + 1):")
             //instantiate setUp to launch the set up process
             let _ = SetUp()
+            
             //give name, life and strength temporary values
             self.name = Buffer.bufferName[0]
             self.life = Buffer.bufferValue[0]
             self.strength = Buffer.bufferValue[1]
+            
             //instantiate team member
             memberTeam0[i] = TeamMember(name: name, life: life, strength: strength)
+            
             //set value of index 0 of nameOfWizard[] with wizard's name
             //set value of index 0 of wizardLife[] with wizard's life points
             if (memberTeam0[i]!.life == 80) {
@@ -71,11 +74,14 @@ class SetUpTeams {
             //instantiate setUp to launch the set up process
             let _ = SetUp()
             
+            //give name, life and strength temporary values
             self.name = Buffer.bufferName[0]
             self.life = Buffer.bufferValue[0]
             self.strength = Buffer.bufferValue[1]
             
+            //instantiate team member
             memberTeam1[i] = TeamMember(name: name, life: life, strength: strength)
+            
             //set value of index 1 of nameOfWizard[]
             //set value of index 1 of wizardLife[] with wizard life points
             if (memberTeam1[i]!.life == 80) {
@@ -99,15 +105,20 @@ class SetUpTeams {
     //print each player's team (name, life and strength points)
     func summarizeSetUp() {
         print("great ! let's summarize\n")
+        
         print("\(GlobalProperties.playerName[0]), here is your team :")
+        
         for i in 0...2 {
             memberTeam0[i]!.summarize()
         }
+        
         print("\n==================\n")
+        
         print("\(GlobalProperties.playerName[1]), here is your team :")
         for i in 0...2 {
             memberTeam1[i]!.summarize()
         }
+        
         utilities.waitAndClearTty(delay: 10)
     }
 }

@@ -62,15 +62,15 @@ class Round {
            
     }
     
-    
-    
     //teamMember0 fights teamMember1, call from chooseFighter0()
     func fightAgainstTeam1(hit: Int) {
         //call randomWeapon and check boolean return
         //true means there's a random weapon this round
         happyRound.randomWeaponProcess()
+        
         //call chooseOpponent
         chooseOpponent1()
+        
         //scan the team members to match with opponent value and find the life points
         for i in 0...2 {
             if (memberTeam1[i]!.name == GlobalProperties.opponent) {
@@ -81,7 +81,7 @@ class Round {
                     memberTeam1[i]!.life -= (hit*2)
                     //give the new life value to newLifePoints
                     GlobalProperties.newLifePoints = memberTeam1[i]!.life
-                    //default behavior
+                //default behavior
                 } else {
                     memberTeam1[i]!.life -= hit
                     GlobalProperties.newLifePoints = memberTeam1[i]!.life
@@ -95,6 +95,7 @@ class Round {
     //print fighters values for team 0, call from chooseFighter0()
     func introducingFighters0() {
         print("your fighters are :")
+        
         //prints name, life and strength of the living (ie life > 0)
         for i in 0...2 {
             //but don't print the wizard
@@ -119,7 +120,7 @@ class Round {
                     if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life > 0){
                         //pass strength points to the fight function
                         fightAgainstTeam1(hit: memberTeam0[i]!.strength)
-                        //if the fighter is dead, relaunch the choose fighter process
+                    //if the fighter is dead, relaunch the choose fighter process
                     } else if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life <= 0) {
                         print("we're not rebooting the walking dead here")
                         chooseFighter0()
@@ -257,8 +258,10 @@ class Round {
         //call randomWeapon and check boolean return
         //true means there's a random weapon this round
         happyRound.randomWeaponProcess()
+        
         //call chooseOpponent
         chooseOpponent0()
+        
         //scan the team members to match with opponent value and find the life points
         for i in 0...2 {
             if (memberTeam0[i]!.name == GlobalProperties.opponent) {
@@ -326,7 +329,9 @@ class Round {
         //call to check if there's a random weapon,
         //if yes : print the news and set the value to be added to life points
         happyRound.randomWeaponProcess()
+        
         print("choose your team member (enter his•her name)")
+        
         for i in 0...2 {
             //don't print the dead && don't print the wizard
             if !(memberTeam1[i]!.life <= 0) && (memberTeam1[i]!.name != GlobalProperties.nameOfWizard[1]) {
@@ -346,9 +351,12 @@ class Round {
                     if (choice == memberTeam1[i]!.name) {
                         //add wizard's strength to life points
                         GlobalProperties.cureLife = memberTeam1[i]!.life
+                        
                         memberTeam1[i]!.life = wizardSpell.heal(wound: GlobalProperties.cureLife)
+                        
                         //print new life value
                         print("\(memberTeam1[i]!.name) has now \(memberTeam1[i]!.life) life points\n")
+                        
                         utilities.waitAndClearTty(delay: 2)
                     }
                 }
@@ -365,6 +373,7 @@ class Round {
         print(">\(GlobalProperties.playerName[1]), what do you want to do:"
             + "\n>type 1 to fight"
             + "\n>type 2 to heal a member of your team")
+        
         if let choice = readLine() {
             switch choice {
             //launch a combat turn

@@ -10,12 +10,11 @@
 
 //set up players'names, print welcome
 class SetUpPLayers {
+    
     //set up players' names
     func setUpPlayersNames() {
-        //let player0 = Player()
-        player0.getPlayerName()
         
-        //let player1 = Player()
+        player0.getPlayerName()
         player1.getPlayerName()
         
         print(">hello \(player0.nameOfPlayer!) !"

@@ -28,7 +28,6 @@ let utilities = Utilities()
 var player0 = Player()
 var player1 = Player()
 
-
 //MARK: set up players' names
 let setUpPlayers = SetUpPLayers()
 
@@ -56,6 +55,7 @@ let launch = Launch()
 
 //MARK: play
 //get the name of the players
+utilities.shell("clear")
 print("when prompted, please enter players' names")
 setUpPlayers.setUpPlayersNames()
 

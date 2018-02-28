@@ -11,6 +11,7 @@
 //a kill all, set life levels at 0
 //another Konami code...
 class EasterEgg {
+    
     //set opponent life levels at 0, kill the game
     func killAll(player: Int) {
         print("an easter egg is found !"
@@ -24,6 +25,7 @@ class EasterEgg {
             //set team 0 life points to 0
             GlobalProperties.lifeTeam0 = [Int](repeating: 0, count: 3)
         }
+        
         //reset names
         for _ in GlobalProperties.nameInGame {
             GlobalProperties.nameInGame = [""]
@@ -32,6 +34,7 @@ class EasterEgg {
         GlobalProperties.nameOfWizard = ["", "", "", "", "", ""]
         GlobalProperties.team0FighterName = ["", "", ""]
         GlobalProperties.team1FighterName = ["", "", ""]
+        
         //call lifeLevels()
         report.lifeLevels()
     }

@@ -24,6 +24,7 @@ class Player {
             } else {
                 //set name
                 nameOfPlayer = name
+                
                 //append arrays to further check name uniqueness
                 GlobalProperties.playerName.append(name)
                 GlobalProperties.nameInGame.append(name)
