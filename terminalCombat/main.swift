@@ -11,9 +11,7 @@
 import Foundation
 import Cocoa
 
-//MARK: instantiation
-
-//let buffer = Buffer()
+//MARK: instantiations
 
 //MARK: instantiate team members' arrays
 //use optionals to create arrays before instantiation process

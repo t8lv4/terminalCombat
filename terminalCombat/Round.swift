@@ -33,17 +33,25 @@ class Round {
         
         //read input
         if let choice = readLine() {
-            //scan the team members to find a match
-            for i in 0...2 {
-                //check if the opponent is alive
-                if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life > 0) {
-                    //give opponent choice value (ie the name of the fighter)
-                    GlobalProperties.opponent = choice
-                //you don't want to fight a dead, so now you actually *can't* fight a dead
-                } else if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life <= 0) {
-                    print("\nchill, \(memberTeam1[i]!.name) is already dead...\n")
-                    chooseOpponent1()
+            //check input string validity
+            if (GlobalProperties.team1FighterName.contains(choice)) || (GlobalProperties.nameOfWizard.contains(choice)) {
+                //scan the team members to find a match
+                for i in 0...2 {
+                    //check if the opponent is alive
+                    if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life > 0) {
+                        //give opponent choice value (ie the name of the fighter)
+                        GlobalProperties.opponent = choice
+                        //you don't want to fight a dead, so now you actually *can't* fight a dead
+                    } else if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life <= 0) {
+                        print("\nchill, \(memberTeam1[i]!.name) is already dead...\n")
+                        chooseOpponent1()
+                    }
                 }
+            } else {
+                //input is invalid
+                print("i didn't get it"
+                    + "\nplease try again")
+                chooseOpponent1()
             }
         } else {
             //input is invalid
@@ -51,7 +59,10 @@ class Round {
                 + "\nplease try again")
             chooseOpponent1()
         }
+           
     }
+    
+    
     
     //teamMember0 fights teamMember1, call from chooseFighter0()
     func fightAgainstTeam1(hit: Int) {
@@ -215,18 +226,25 @@ class Round {
         
         //read input
         if let choice = readLine() {
-            //scan the team members to find a match
-            for i in 0...2 {
-                if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life > 0){
-                    //give opponent choice value (ie the name of the fighter)
-                    GlobalProperties.opponent = choice
-                    //you don't want to fight a dead, so now you actually *can't* fight a dead
-                } else if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life <= 0) {
-                    print("\nchill, \(memberTeam0[i]!.name) is already dead...\n")
-                    chooseOpponent0()
+            //check input string validity
+            if (GlobalProperties.team0FighterName.contains(choice)) || (GlobalProperties.nameOfWizard.contains(choice)) {
+                //scan the team members to find a match
+                for i in 0...2 {
+                    if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life > 0){
+                        //give opponent choice value (ie the name of the fighter)
+                        GlobalProperties.opponent = choice
+                        //you don't want to fight a dead, so now you actually *can't* fight a dead
+                    } else if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life <= 0) {
+                        print("\nchill, \(memberTeam0[i]!.name) is already dead...\n")
+                        chooseOpponent0()
+                    }
                 }
+                //input is invalid
+            } else {
+                print("i didn't get it"
+                    + "\nplease try again")
+                chooseOpponent0()
             }
-            //input is invalid
         } else {
             print("i didn't get it"
                 + "\nplease try again")
@@ -370,5 +388,4 @@ class Round {
             }
         }
     }
-    
 }
