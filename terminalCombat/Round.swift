@@ -326,9 +326,6 @@ class Round {
     
     //add wizard's strength points to life points of a chosen fighter
     func chooseHeal1() {
-        //call to check if there's a random weapon,
-        //if yes : print the news and set the value to be added to life points
-        happyRound.randomWeaponProcess()
         
         print("choose your team member (enter his•her name)")
         

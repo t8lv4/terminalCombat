@@ -12,6 +12,9 @@
 class WizardSpell {
     
     func heal(wound: Int) -> Int{
+        //call to check if there's a random weapon,
+        //if yes : print the news and set the value to be added to life points
+        happyRound.randomWeaponProcess()
         //if there's a special weapon this round
         if (GlobalProperties.happyWeapon == 1) {
             GlobalProperties.cureLife += 40
@@ -19,6 +22,8 @@ class WizardSpell {
         } else {
             GlobalProperties.cureLife += 20
         }
+        //reset GlobalProperties.happyWeapon == 1
+        GlobalProperties.happyWeapon = 0
         return GlobalProperties.cureLife
     }
 }
