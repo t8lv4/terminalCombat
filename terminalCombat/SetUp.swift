@@ -39,7 +39,7 @@ class SetUp {
             + "\n>type 1 for a fighter :: life = 100, strength = 10"
             + "\n>type 2 for a giant :: life = 140, strength = 5"
             + "\n>type 3 for a dwarf :: life = 60, strength = 20"
-            + "\n>type 4 for a wizard :: life = 80, healing strength = 10")
+            + "\n>type 4 for a wizard :: life = 80, healing strength = 20")
         
         if let type = readLine() {
             switch type {
@@ -50,7 +50,7 @@ class SetUp {
             //3. dwarf
             case "3": useBuffer(life: 60, strength: 20)
             //4. wizard
-            case "4": useBuffer(life: 80, strength: 10)
+            case "4": useBuffer(life: 80, strength: 20)
             default: print("i didn't get it") ; return setValue()
             }
         }

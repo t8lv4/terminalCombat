@@ -31,7 +31,7 @@ class Report {
     //call from fightAgainstTeamX()
     func aftermath(casualty: String, level: Int) {
         utilities.shell("clear")
-        print("after this combat, \(GlobalProperties.opponent) has \(level) life points left\n")
+        print("after this combat, \(casualty) has \(level) life points left\n")
         //check for liveness
         if (level <= 0) {
             print("\(GlobalProperties.opponent), you are so out of this game !\n")
@@ -44,7 +44,7 @@ class Report {
         var test = Bool()
         
         for i in 0...2 {
-            //set level of life points values to index of each lifeTeam array
+            //update level of life points values to index of each lifeTeam array
             GlobalProperties.lifeTeam0[i] = memberTeam0[i]!.life
             GlobalProperties.lifeTeam1[i] = memberTeam1[i]!.life
             

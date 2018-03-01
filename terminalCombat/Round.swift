@@ -114,7 +114,7 @@ class Round {
         //read the input
         if let fighter = readLine() {
             //check if input is valid && doesn't read a '\n'
-            if (GlobalProperties.team0FighterName.contains(fighter)) && (fighter != ""){
+            if (GlobalProperties.team0FighterName.contains(fighter)) && (fighter != "") {
                 //scan the team names to find a match with the input value
                 for i in 0...2 {
                     if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life > 0){
