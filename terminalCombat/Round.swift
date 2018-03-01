@@ -77,7 +77,7 @@ class Round {
                 //actually THIS is the battle field
                 //there's a special weapon : double the hit value
                 if (GlobalProperties.happyWeapon == 1) {
-                    //substract strength points (the 'hit' value) from opponent's life points
+                    //subtract strength points (the 'hit' value) from opponent's life points
                     memberTeam1[i]!.life -= (hit*2)
                     //give the new life value to newLifePoints
                     GlobalProperties.newLifePoints = memberTeam1[i]!.life

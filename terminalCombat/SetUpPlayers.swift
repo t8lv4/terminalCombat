@@ -14,6 +14,7 @@ class SetUpPLayers {
     //set up players' names
     func setUpPlayersNames() {
         
+        //getPlayerName is a method of Player
         player0.getPlayerName()
         player1.getPlayerName()
         

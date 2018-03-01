@@ -28,7 +28,7 @@ class SetUp {
                 //append the nameInGame array
                 GlobalProperties.nameInGame.append(name)
                 //pass value to a buffer to set team members' names
-                Buffer.bufferName[0] = name
+                Buffer.bufferName = name
             }
         }
     }
@@ -40,6 +40,7 @@ class SetUp {
             + "\n>type 2 for a giant :: life = 140, strength = 5"
             + "\n>type 3 for a dwarf :: life = 60, strength = 20"
             + "\n>type 4 for a wizard :: life = 80, healing strength = 10")
+        
         if let type = readLine() {
             switch type {
             //1. fighter

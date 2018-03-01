@@ -12,7 +12,7 @@ import Foundation
 //happens randomly, one round only
 class HappyRound {
     
-    //if true, there's a new weapon (or cure) during this round
+    //if true, there's a new weapon (or cure) available during this round
     func randomWeapon() -> Bool {
         let diceRoll = Int(arc4random_uniform(100) + 1)
         var bool = Bool()

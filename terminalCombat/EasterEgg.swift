@@ -30,7 +30,7 @@ class EasterEgg {
         for _ in GlobalProperties.nameInGame {
             GlobalProperties.nameInGame = [""]
         }
-        Buffer.bufferName = [""]
+        Buffer.bufferName = ""
         GlobalProperties.nameOfWizard = ["", "", "", "", "", ""]
         GlobalProperties.team0FighterName = ["", "", ""]
         GlobalProperties.team1FighterName = ["", "", ""]

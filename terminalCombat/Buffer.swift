@@ -13,6 +13,6 @@ class Buffer {
     static var bufferValue = [0, 0]
     
     //temporarily store character's name
-    static var bufferName = [""]
+    static var bufferName = ""
     
 }
