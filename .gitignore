@@ -2,3 +2,5 @@
 .DS_Store
 *.rtf
 *.txt
+terminalCombat.xcodeproj
+.gitignore
