@@ -33,9 +33,11 @@ class HappyRound {
             + "\nyou've just DOUBLED your strength !\n")
     }
     
-    //if there's a random weapon this round, call to set happyWeapon value to 1 and call to print the good news
+    //call to set happyWeapon value
+    //if return 1, there's a special weapon this round, print the good news
     func randomWeaponProcess() {
-        if (randomWeapon() == true) {
+        let dice = randomWeapon()
+        if (dice == true) {
             GlobalProperties.happyWeapon = 1
             printNews()
         }

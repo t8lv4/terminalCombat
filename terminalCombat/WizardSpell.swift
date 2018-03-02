@@ -17,13 +17,11 @@ class WizardSpell {
         happyRound.randomWeaponProcess()
         //if there's a special weapon this round
         if (GlobalProperties.happyWeapon == 1) {
-            GlobalProperties.cureLife += 40
+            GlobalProperties.cureLife += 20
             //default
         } else {
-            GlobalProperties.cureLife += 20
-        }
-        //reset GlobalProperties.happyWeapon == 1
-        GlobalProperties.happyWeapon = 0
+            GlobalProperties.cureLife += 10
+        }        
         return GlobalProperties.cureLife
     }
 }

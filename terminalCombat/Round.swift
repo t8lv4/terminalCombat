@@ -136,9 +136,7 @@ class Round {
     
     //add wizard's strength points to life points of a chosen fighter
     func chooseHeal0() {
-        //call to check if there's a random weapon,
-        //if yes : print the news and set the value to be added to life points
-        happyRound.randomWeaponProcess()
+
         print("choose your team member (enter his•her name)")
         for i in 0...2 {
             //don't print the dead && don't print the wizard
@@ -341,7 +339,7 @@ class Round {
             if GlobalProperties.nameOfWizard.contains(choice) {
                 print("a wizard can't cure himself\n")
                 chooseHeal1()
-                //check if input is valid
+            //check if input is valid
             } else if GlobalProperties.team1FighterName.contains(choice){
                 //scan the members to find a match
                 for i in 0...2 {
@@ -357,7 +355,7 @@ class Round {
                         utilities.waitAndClearTty(delay: 2)
                     }
                 }
-                //input name is invalid
+            //input name is invalid
             } else {
                 print("i didn't get it, please try again")
                 chooseHeal1()
