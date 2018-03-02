@@ -25,17 +25,6 @@ class EasterEgg {
             //set team 0 life points to 0
             GlobalProperties.lifeTeam0 = [Int](repeating: 0, count: 3)
         }
-        
-        //reset names
-        for _ in GlobalProperties.nameInGame {
-            GlobalProperties.nameInGame = [""]
-        }
-        
-        Buffer.bufferName = ""
-        GlobalProperties.nameOfWizard = ["", "", "", "", "", ""]
-        GlobalProperties.team0FighterName = ["", "", ""]
-        GlobalProperties.team1FighterName = ["", "", ""]
-        
         //call lifeLevels()
         report.lifeLevels()
     }

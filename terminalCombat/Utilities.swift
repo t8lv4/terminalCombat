@@ -22,6 +22,19 @@ class Utilities {
         }
     }
     
+    func resetNames() {
+
+        for _ in GlobalProperties.nameInGame {
+            GlobalProperties.nameInGame = [""]
+        }
+        
+        Buffer.bufferName = ""
+        GlobalProperties.nameOfWizard = ["", "", "", "", "", ""]
+        GlobalProperties.team0FighterName = ["", "", ""]
+        GlobalProperties.team1FighterName = ["", "", ""]
+        
+    }
+    
 //    //write command to tty
 //    func shell(_ args: String...) {
 //        let task = Process()

@@ -18,7 +18,7 @@ class Launch {
             switch choice {
             //reset round counter, call play to relaunch the game
             case "y": //utilities.shell("clear") ;
-            GlobalProperties.roundCounter = 0 ; play()
+                GlobalProperties.roundCounter = 0 ; utilities.resetNames() ; play()
             //stop the game
             case "n": //utilities.shell("clear") ;
             print("fair enough. shutdown now.") ; exit(0)

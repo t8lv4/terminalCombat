@@ -34,7 +34,7 @@ class Report {
         print("after this combat, \(casualty) has \(level) life points left\n")
         //check for liveness
         if (level <= 0) {
-            print("\(GlobalProperties.opponent), you are so out of this game !\n")
+            print("\(casualty), you are so out of this game !\n")
         }
         //utilities.waitAndClearTty(delay: 3)
     }

@@ -16,7 +16,7 @@ class HappyRound {
     func randomWeapon() -> Bool {
         let diceRoll = Int(arc4random_uniform(100) + 1)
         var bool = Bool()
-        //20% chance to get a special weapon
+        //about 20% chance to get a special weapon
         if (diceRoll > 40) && (diceRoll < 60) {
             bool = true
         } else {
@@ -25,13 +25,6 @@ class HappyRound {
         return bool
     }
     
-    //print if there's a random weapon this round
-    func printNews() {
-        print("\ngreat news !"
-            + "\nWOAW, the Wizard Of All Wizards sents you a special gift"
-            + "\n(this round only though)."
-            + "\nyou've just DOUBLED your strength !\n")
-    }
     
     //call to set happyWeapon value
     //if return 1, there's a special weapon this round, print the good news
@@ -41,5 +34,13 @@ class HappyRound {
             GlobalProperties.happyWeapon = 1
             printNews()
         }
+    }
+    
+    //if there's a random weapon this round
+    func printNews() {
+        print("\ngreat news !"
+            + "\nWOAW, the Wizard Of All Wizards sents you a special gift"
+            + "\n(this round only though)."
+            + "\nyou've just DOUBLED your strength !\n")
     }
 }
