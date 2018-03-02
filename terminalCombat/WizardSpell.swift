@@ -11,7 +11,7 @@
 //add wizard's strength value to life points, call from chooseHealX()
 class WizardSpell {
     
-    func heal(wound: Int) -> Int{
+    static func heal(wound: Int) -> Int {
         //call to check if there's a random weapon,
         //if yes : print the news and set the value to be added to life points
         happyRound.randomWeaponProcess()

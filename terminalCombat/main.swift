@@ -40,9 +40,6 @@ let easterEgg = EasterEgg()
 //MARK: special random weapon
 let happyRound = HappyRound()
 
-//MARK:Heal
-let wizardSpell = WizardSpell()
-
 //MARK: set up teams
 let setUpTeams = SetUpTeams()
 

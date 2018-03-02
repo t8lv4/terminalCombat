@@ -17,11 +17,11 @@ class Report {
         print(">\(GlobalProperties.playerName[0]) : your team level of life is \(GlobalProperties.lifeTeam0.reduce(0, +))"
             + "\n>\(GlobalProperties.playerName[1]) : your team level of life is \(GlobalProperties.lifeTeam1.reduce(0, +))\n")
         //if life level points <= 0, declare a winner
-        if (GlobalProperties.lifeTeam0.reduce(0, +) == 0) {
+        if (GlobalProperties.lifeTeam0.reduce(0, +) <= 0) {
             print("congrats \(player1.nameOfPlayer!) ! you win this game !\n")
             //prompt to relaunch the game
             launch.playAgain()
-        } else if (GlobalProperties.lifeTeam1.reduce(0, +) == 0) {
+        } else if (GlobalProperties.lifeTeam1.reduce(0, +) <= 0) {
             print("congrats \(player0.nameOfPlayer!) ! you win this game !\n")
             launch.playAgain()
         }

@@ -151,13 +151,13 @@ class Round {
                 print("a wizard can't cure himself\n")
                 chooseHeal0()
                 //check if input is valid
-            } else if GlobalProperties.team0FighterName.contains(choice){
+            } else if GlobalProperties.team0FighterName.contains(choice) {
                 //scan the members to find a match
                 for i in 0...2 {
                     if (choice == memberTeam0[i]!.name) {
                         //add wizard's strength to life points
                         GlobalProperties.cureLife = memberTeam0[i]!.life
-                        memberTeam0[i]!.life = wizardSpell.heal(wound: GlobalProperties.cureLife)
+                        memberTeam0[i]!.life = WizardSpell.heal(wound: GlobalProperties.cureLife)
                         //print new life value
                         print("\(memberTeam0[i]!.name) has now \(memberTeam0[i]!.life) life points\n")
                         utilities.waitAndClearTty(delay: 2)
@@ -347,7 +347,7 @@ class Round {
                         //add wizard's strength to life points
                         GlobalProperties.cureLife = memberTeam1[i]!.life
                         
-                        memberTeam1[i]!.life = wizardSpell.heal(wound: GlobalProperties.cureLife)
+                        memberTeam1[i]!.life = WizardSpell.heal(wound: GlobalProperties.cureLife)
                         
                         //print new life value
                         print("\(memberTeam1[i]!.name) has now \(memberTeam1[i]!.life) life points\n")
