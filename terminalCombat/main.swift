@@ -13,7 +13,7 @@ import Cocoa
 
 //MARK: instantiations
 
-//MARK: instantiate team members' arrays
+//MARK: create team members' arrays
 //use optionals to create arrays before instantiation process
 var m00: TeamMember? ; var m01: TeamMember? ; var m02: TeamMember?
 var memberTeam0 = [m00, m01, m02]
@@ -21,10 +21,10 @@ var memberTeam0 = [m00, m01, m02]
 var m10: TeamMember? ; var m11: TeamMember? ; var m12: TeamMember?
 var memberTeam1 = [m10, m11, m12]
 
-//MARK: instantiate utilities
+//MARK: instantiate Utilities
 let utilities = Utilities()
 
-//MARK: instantiate 2 players
+//MARK: create 2 players
 var player0 = Player()
 var player1 = Player()
 

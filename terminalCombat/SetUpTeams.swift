@@ -24,10 +24,10 @@ class SetUpTeams {
         print("\(GlobalProperties.playerName[0]) : let's set up your team")
         for i in 0...2 {
             print("for member \(i + 1):")
-            //instantiate setUp to launch the set up process
+            //instantiate SetUp to launch the set up process
             let _ = SetUp()
             
-            //instantiate team member
+            //instantiate teamMember
             memberTeam0[i] = TeamMember(name: Buffer.bufferName, life: Buffer.bufferValue[0], strength: Buffer.bufferValue[1])
             
             //set value of index 0 of nameOfWizard[] with wizard's name
@@ -64,7 +64,7 @@ class SetUpTeams {
             //instantiate setUp to launch the set up process
             let _ = SetUp()
             
-            //instantiate team member
+            //instantiate teamMember
             memberTeam1[i] = TeamMember(name: Buffer.bufferName, life: Buffer.bufferValue[0], strength: Buffer.bufferValue[1])
             
             //set value of index 1 of nameOfWizard[]
