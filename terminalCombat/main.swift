@@ -22,7 +22,7 @@ var m10: TeamMember? ; var m11: TeamMember? ; var m12: TeamMember?
 var memberTeam1 = [m10, m11, m12]
 
 //MARK: instantiate Utilities
-let utilities = Utilities()
+//let utilities = Utilities()
 
 //MARK: create 2 players
 var player0 = Player()
