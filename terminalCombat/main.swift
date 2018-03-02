@@ -52,7 +52,7 @@ let launch = Launch()
 
 //MARK: play
 //get the name of the players
-utilities.shell("clear")
+//utilities.shell("clear")
 print("when prompted, please enter players' names")
 setUpPlayers.setUpPlayersNames()
 

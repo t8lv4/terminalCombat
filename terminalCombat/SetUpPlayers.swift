@@ -22,10 +22,10 @@ class SetUpPLayers {
             + "\n>hello \(player1.nameOfPlayer!) !")
         
         //call to wait before clearing tty's window
-        utilities.waitAndClearTty(delay: GlobalProperties.time)
+        //utilities.waitAndClearTty(delay: GlobalProperties.time)
         
         print(">welcome to terminalCombat")
-        utilities.waitAndClearTty(delay: GlobalProperties.time)
+        //utilities.waitAndClearTty(delay: GlobalProperties.time)
         
         //open readme.md @ github
         utilities.openRules()

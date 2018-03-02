@@ -160,7 +160,7 @@ class Round {
                         memberTeam0[i]!.life = WizardSpell.heal(wound: GlobalProperties.cureLife)
                         //print new life value
                         print("\(memberTeam0[i]!.name) has now \(memberTeam0[i]!.life) life points\n")
-                        utilities.waitAndClearTty(delay: 2)
+                        //utilities.waitAndClearTty(delay: 2)
                     }
                 }
                 //invalid input, try again
@@ -180,10 +180,11 @@ class Round {
         if let choice = readLine() {
             switch choice {
             //launch a combat turn
-            case "1": utilities.shell("clear") ; print("let's fight !\n") ; chooseFighter0()
+            case "1": //utilities.shell("clear") ;
+            print("let's fight !\n") ; chooseFighter0()
             //heal
             case "2":
-                utilities.shell("clear")
+                //utilities.shell("clear")
                 //if there's no wizard in the team, go fight
                 if (GlobalProperties.nameOfWizard[0] == "") {
                     print("there's no wizard in your team. go fight !\n") ; chooseFighter0()
@@ -195,9 +196,11 @@ class Round {
                     chooseHeal0()
                 }
             //cheat code launch killAll()
-            case "fukushima": utilities.shell("clear") ; easterEgg.killAll(player: 0)
+            case "fukushima": //utilities.shell("clear") ;
+            easterEgg.killAll(player: 0)
             //invalid input
-            default: utilities.shell("clear") ; print("i didn't get it")
+            default: //utilities.shell("clear") ;
+            print("i didn't get it")
             team0FightOrHeal()
             }
         }
@@ -352,7 +355,7 @@ class Round {
                         //print new life value
                         print("\(memberTeam1[i]!.name) has now \(memberTeam1[i]!.life) life points\n")
                         
-                        utilities.waitAndClearTty(delay: 2)
+                        //utilities.waitAndClearTty(delay: 2)
                     }
                 }
             //input name is invalid
@@ -372,10 +375,11 @@ class Round {
         if let choice = readLine() {
             switch choice {
             //launch a combat turn
-            case "1": utilities.shell("clear") ; print("let's fight !\n") ; chooseFighter1()
+            case "1": //utilities.shell("clear") ;
+            print("let's fight !\n") ; chooseFighter1()
             //heal
             case "2":
-                utilities.shell("clear")
+                //utilities.shell("clear")
                 //if there's no wizard in the team, go fight
                 if (GlobalProperties.nameOfWizard[1] == "") {
                     print("there's no wizard in your team. go fight !\n") ; chooseFighter1()
@@ -386,8 +390,10 @@ class Round {
                 } else {
                     chooseHeal1()
                 }
-            case "fukushima": utilities.shell("clear") ; easterEgg.killAll(player: 1)
-            default: utilities.shell("clear") ; print("i didn't get it")
+            case "fukushima": //utilities.shell("clear") ;
+            easterEgg.killAll(player: 1)
+            default: //utilities.shell("clear") ;
+            print("i didn't get it")
             team1FightOrHeal()
             }
         }

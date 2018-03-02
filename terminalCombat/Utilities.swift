@@ -22,23 +22,23 @@ class Utilities {
         }
     }
     
-    //write command to tty
-    func shell(_ args: String...) {
-        let task = Process()
-        task.launchPath = "/usr/bin/env"
-        task.arguments = args
-        task.launch()
-        task.waitUntilExit()
-    }
-    
-    //delay next instruction in the main thread
-    func wait(delay: UInt32) {
-        sleep(delay)
-    }
-    
-    //delay clearing of the tty window
-    func waitAndClearTty(delay: UInt32) {
-        sleep(delay)
-        shell("clear")
-    }
+//    //write command to tty
+//    func shell(_ args: String...) {
+//        let task = Process()
+//        task.launchPath = "/usr/bin/env"
+//        task.arguments = args
+//        task.launch()
+//        task.waitUntilExit()
+//    }
+//    
+//    //delay next instruction in the main thread
+//    func wait(delay: UInt32) {
+//        sleep(delay)
+//    }
+//    
+//    //delay clearing of the tty window
+//    func waitAndClearTty(delay: UInt32) {
+//        sleep(delay)
+//        shell("clear")
+//    }
 }

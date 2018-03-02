@@ -37,7 +37,7 @@ class SetUpTeams {
                 GlobalProperties.wizardLife[0] = memberTeam0[i]!.life
             }
             //clear tty window
-            utilities.shell("clear")
+            //utilities.shell("clear")
         }
         
         //create an array of fighters' names
@@ -74,7 +74,7 @@ class SetUpTeams {
                 GlobalProperties.wizardLife[1] = memberTeam1[i]!.life
             }
             //clear tty window
-            utilities.shell("clear")
+            //utilities.shell("clear")
         }
         
         //set index values in array of fighters' names for team 1
@@ -104,7 +104,7 @@ class SetUpTeams {
             memberTeam1[i]!.summarize()
         }
         
-        utilities.waitAndClearTty(delay: 10)
+        //utilities.waitAndClearTty(delay: 10)
     }
 }
 

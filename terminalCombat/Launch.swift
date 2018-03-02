@@ -17,11 +17,14 @@ class Launch {
         if let choice = readLine() {
             switch choice {
             //reset round counter, call play to relaunch the game
-            case "y": utilities.shell("clear") ; GlobalProperties.roundCounter = 0 ; play()
+            case "y": //utilities.shell("clear") ;
+            GlobalProperties.roundCounter = 0 ; play()
             //stop the game
-            case "n": utilities.shell("clear") ; print("fair enough. shutdown now.") ; exit(0)
+            case "n": //utilities.shell("clear") ;
+            print("fair enough. shutdown now.") ; exit(0)
             //invalid input
-            default: utilities.shell("clear") ; print("i didn't get it") ; playAgain()
+            default: //utilities.shell("clear") ;
+            print("i didn't get it") ; playAgain()
             }
         }
     }

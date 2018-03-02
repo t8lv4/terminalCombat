@@ -30,13 +30,13 @@ class Report {
     //print new life points of opponent after combat, check for liveness
     //call from fightAgainstTeamX()
     func aftermath(casualty: String, level: Int) {
-        utilities.shell("clear")
+        //utilities.shell("clear")
         print("after this combat, \(casualty) has \(level) life points left\n")
         //check for liveness
         if (level <= 0) {
             print("\(GlobalProperties.opponent), you are so out of this game !\n")
         }
-        utilities.waitAndClearTty(delay: 3)
+        //utilities.waitAndClearTty(delay: 3)
     }
     
     //return boolean to while loop : if test is false, end the game, call from play()
