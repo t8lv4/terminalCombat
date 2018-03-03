@@ -18,7 +18,7 @@ class Round {
     ///////////////////////
     
     //print fighter's values for team 1 (including the wizard !), call from chooseOpponent1()
-    func introducingOpponent1() {
+    private func introducingOpponent1() {
         //print name, life and strength of the living (ie life > 0)
         for i in 0...2 {
             memberTeam1[i]!.summarize()
@@ -26,10 +26,10 @@ class Round {
     }
     
     //teamMember0[] choose an opponent, call from fightAgainstTeam1()
-    func chooseOpponent1() {
+    private func chooseOpponent1() {
         
         print("choose the opponent : throw down the gauntlet ! (...by typing his•her name)")
-        //call function to print fighters values
+        //call private function to print fighters values
         introducingOpponent1()
         
         //read input
@@ -64,7 +64,7 @@ class Round {
     }
     
     //teamMember0 fights teamMember1, call from chooseFighter0()
-    func fightAgainstTeam1(hit: Int) {
+    private func fightAgainstTeam1(hit: Int) {
         //call randomWeapon and check boolean return
         //true means there's a random weapon this round
         happyRound.randomWeaponProcess()
@@ -94,7 +94,7 @@ class Round {
     }
     
     //print fighters values for team 0, call from chooseFighter0()
-    func introducingFighters0() {
+    private func introducingFighters0() {
         
         print("your fighters are :")
         
@@ -108,7 +108,7 @@ class Round {
     }
     
     //player 0 choose a fighter
-    func chooseFighter0() {
+    private func chooseFighter0() {
         //call function to read fighters values
         introducingFighters0()
         
@@ -139,7 +139,7 @@ class Round {
     }
     
     //add wizard's strength points to life points of a chosen fighter
-    func chooseHeal0() {
+    private func chooseHeal0() {
 
         print("choose your team member (enter his•her name)")
         for i in 0...2 {
@@ -220,7 +220,7 @@ class Round {
     /////////////////////////////////////
     
     //print fighters values for team 1 (including the wizard !), call from chooseOpponent1()
-    func introducingOpponent0() {
+    private func introducingOpponent0() {
         //prints name, life and strength of the living (ie life > 0)
         for i in 0...2 {
             memberTeam0[i]!.summarize()
@@ -228,7 +228,7 @@ class Round {
     }
     
     //teamMember0[] choose an opponent, call from fightAgainstTeam1()
-    func chooseOpponent0() {
+    private func chooseOpponent0() {
         
         print("choose the opponent : throw down the gauntlet ! (...by typing his•her name)")
         //call function to print fighters values
@@ -264,7 +264,7 @@ class Round {
     }
     
     //teamMember0 fights teamMember1, call from chooseFighter0()
-    func fightAgainstTeam0(hit: Int) {
+    private func fightAgainstTeam0(hit: Int) {
         //call randomWeapon and check boolean return
         //true means there's a random weapon this round
         happyRound.randomWeaponProcess()
@@ -295,7 +295,7 @@ class Round {
     }
     
     //print fighters values for team 0, call from chooseFighter0()
-    func introducingFighters1() {
+    private func introducingFighters1() {
         
         print("your fighters are :")
         //prints name, life and strength of the living (ie life > 0)
@@ -308,7 +308,7 @@ class Round {
     }
     
     //player 0 choose a fighter
-    func chooseFighter1() {
+    private func chooseFighter1() {
         //call function to read fighters values
         introducingFighters1()
         
@@ -338,7 +338,7 @@ class Round {
     }
     
     //add wizard's strength points to life points of a chosen fighter
-    func chooseHeal1() {
+    private func chooseHeal1() {
         
         print("choose your team member (enter his•her name)")
         

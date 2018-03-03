@@ -11,12 +11,14 @@
 class SetUp {
     
     init() {
+        
         setName()
         setValue()
+        
     }
     
     //set team members' names
-    func setName() {
+    private func setName() {
         
         print("enter a unique name")
         if let name = readLine() {
@@ -35,7 +37,7 @@ class SetUp {
     }
     
     //set values for each characters' type
-    func setValue() {
+    private func setValue() {
         
         print(">what's his•her type ?"
             + "\n>type 1 for a fighter :: life = 100, strength = 10"
