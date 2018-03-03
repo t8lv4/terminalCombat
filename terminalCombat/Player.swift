@@ -14,6 +14,7 @@ class Player {
     var nameOfPlayer: String?
     
     func getPlayerName() {
+        
         print(">what's your name ?")
         if let name = readLine() {
             //check name uniqueness

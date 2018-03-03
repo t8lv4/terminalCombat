@@ -13,6 +13,7 @@ class Launch {
     
     //ask another game
     func playAgain() {
+        
         print(">do you want to play again ? (y/n)")
         if let choice = readLine() {
             switch choice {
@@ -32,6 +33,7 @@ class Launch {
     //player 0 and player 1 play one after another
     //while team member's life > 0
     func play() {
+        
         print("let's get to it !")
         
         setUpTeams.setUpTeam0()

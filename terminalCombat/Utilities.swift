@@ -13,6 +13,7 @@ class Utilities {
     
     //prefered web browser open README.md @ github
     func openRules() {
+        
         if let url = URL(string: "https://github.com/t8lv4/terminalCombat/blob/master/README.md") {
             NSWorkspace.shared.open(url)
             print("your web browser should have opened the rules by now."

@@ -14,6 +14,7 @@ class Report {
     //print life levels for each team, call from alive()
     //if a team life levels == 0, call playAgain()
     func lifeLevels() {
+        
         print(">\(GlobalProperties.playerName[0]) : your team level of life is \(GlobalProperties.lifeTeam0.reduce(0, +))"
             + "\n>\(GlobalProperties.playerName[1]) : your team level of life is \(GlobalProperties.lifeTeam1.reduce(0, +))\n")
         //if life level points <= 0, declare a winner

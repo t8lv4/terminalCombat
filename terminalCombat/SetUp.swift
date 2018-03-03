@@ -17,6 +17,7 @@ class SetUp {
     
     //set team members' names
     func setName() {
+        
         print("enter a unique name")
         if let name = readLine() {
             //check name uniqueness
@@ -35,6 +36,7 @@ class SetUp {
     
     //set values for each characters' type
     func setValue() {
+        
         print(">what's his•her type ?"
             + "\n>type 1 for a fighter :: life = 100, strength = 10"
             + "\n>type 2 for a giant :: life = 140, strength = 5"
@@ -58,6 +60,7 @@ class SetUp {
     
     //temporarily store values during each instantiation of setUp
     func useBuffer(life: Int, strength: Int) {
+        
       Buffer.bufferValue[0] = life
       Buffer.bufferValue[1] = strength
     }

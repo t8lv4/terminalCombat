@@ -27,6 +27,7 @@ class Round {
     
     //teamMember0[] choose an opponent, call from fightAgainstTeam1()
     func chooseOpponent1() {
+        
         print("choose the opponent : throw down the gauntlet ! (...by typing his•her name)")
         //call function to print fighters values
         introducingOpponent1()
@@ -94,6 +95,7 @@ class Round {
     
     //print fighters values for team 0, call from chooseFighter0()
     func introducingFighters0() {
+        
         print("your fighters are :")
         
         //prints name, life and strength of the living (ie life > 0)
@@ -117,11 +119,13 @@ class Round {
             if (GlobalProperties.team0FighterName.contains(fighter)) && (fighter != "") {
                 //scan the team names to find a match with the input value
                 for i in 0...2 {
-                    if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life > 0){
+                    
+                    if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life > 0) {
                         //pass strength points to the fight function
                         fightAgainstTeam1(hit: memberTeam0[i]!.strength)
                     //if the fighter is dead, relaunch the choose fighter process
                     } else if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life <= 0) {
+                        
                         print("we're not rebooting the walking dead here")
                         chooseFighter0()
                     }
@@ -154,6 +158,7 @@ class Round {
             } else if GlobalProperties.team0FighterName.contains(choice) {
                 //scan the members to find a match
                 for i in 0...2 {
+                    
                     if (choice == memberTeam0[i]!.name) {
                         //add wizard's strength to life points
                         GlobalProperties.cureLife = memberTeam0[i]!.life
@@ -174,10 +179,12 @@ class Round {
     
     //choose a fight or a cure
     func team0FightOrHeal() {
+        
         print(">\(GlobalProperties.playerName[0]), what do you want to do:"
             + "\n>type 1 to fight"
             + "\n>type 2 to heal a member of your team")
         if let choice = readLine() {
+            
             switch choice {
             //launch a combat turn
             case "1": //utilities.shell("clear") ;
@@ -222,6 +229,7 @@ class Round {
     
     //teamMember0[] choose an opponent, call from fightAgainstTeam1()
     func chooseOpponent0() {
+        
         print("choose the opponent : throw down the gauntlet ! (...by typing his•her name)")
         //call function to print fighters values
         introducingOpponent0()
@@ -232,7 +240,8 @@ class Round {
             if (GlobalProperties.team0FighterName.contains(choice)) || (GlobalProperties.nameOfWizard.contains(choice)) {
                 //scan the team members to find a match
                 for i in 0...2 {
-                    if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life > 0){
+                    
+                    if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life > 0) {
                         //give opponent choice value (ie the name of the fighter)
                         GlobalProperties.opponent = choice
                         //you don't want to fight a dead, so now you actually *can't* fight a dead
@@ -265,6 +274,7 @@ class Round {
         
         //scan the team members to match with opponent value and find the life points
         for i in 0...2 {
+            
             if (memberTeam0[i]!.name == GlobalProperties.opponent) {
                 //actually THIS is the battle field !
                 //if there's a random weapon this round : double hit value
@@ -273,7 +283,7 @@ class Round {
                     memberTeam0[i]!.life -= (hit*2)
                     //give the new life value to newLifePoints
                     GlobalProperties.newLifePoints = memberTeam0[i]!.life
-                    //default behavior
+                //default behavior
                 } else {
                     memberTeam0[i]!.life -= hit
                     GlobalProperties.newLifePoints = memberTeam0[i]!.life
@@ -286,6 +296,7 @@ class Round {
     
     //print fighters values for team 0, call from chooseFighter0()
     func introducingFighters1() {
+        
         print("your fighters are :")
         //prints name, life and strength of the living (ie life > 0)
         for i in 0...2 {
@@ -305,10 +316,11 @@ class Round {
         //read the input
         if let fighter = readLine() {
             //check if input is valid && doesn't read a '\n'
-            if (GlobalProperties.team1FighterName.contains(fighter)) && (fighter != ""){
+            if (GlobalProperties.team1FighterName.contains(fighter)) && (fighter != "") {
                 //scan the team names to find a match with the input value
                 for i in 0...2 {
-                    if (memberTeam1[i]!.name == fighter) && (memberTeam1[i]!.life > 0){
+                    
+                    if (memberTeam1[i]!.name == fighter) && (memberTeam1[i]!.life > 0) {
                         //pass strength points to the fight function
                         fightAgainstTeam0(hit: memberTeam1[i]!.strength)
                         //if the fighter is dead, relaunch the choose fighter process
@@ -346,6 +358,7 @@ class Round {
             } else if GlobalProperties.team1FighterName.contains(choice){
                 //scan the members to find a match
                 for i in 0...2 {
+                    
                     if (choice == memberTeam1[i]!.name) {
                         //add wizard's strength to life points
                         GlobalProperties.cureLife = memberTeam1[i]!.life
@@ -368,11 +381,13 @@ class Round {
     
     //choose a fight or a cure
     func team1FightOrHeal() {
+        
         print(">\(GlobalProperties.playerName[1]), what do you want to do:"
             + "\n>type 1 to fight"
             + "\n>type 2 to heal a member of your team")
         
         if let choice = readLine() {
+            
             switch choice {
             //launch a combat turn
             case "1": //utilities.shell("clear") ;

@@ -14,6 +14,7 @@ class EasterEgg {
     
     //set opponent life levels at 0, kill the game
     func killAll(player: Int) {
+        
         print("an easter egg is found !"
             + "\nand it's a nasty one : THIS is a KILL ALL !\n")
         //if player 0 enter the cheat code
