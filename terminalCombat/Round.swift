@@ -82,6 +82,8 @@ class Round {
                     memberTeam1[i]!.life -= (hit*2)
                     //give the new life value to newLifePoints
                     GlobalProperties.newLifePoints = memberTeam1[i]!.life
+                    //reset
+                    GlobalProperties.happyWeapon = 0
                 //default behavior
                 } else {
                     memberTeam1[i]!.life -= hit
@@ -174,6 +176,8 @@ class Round {
                 chooseHeal0()
             }
         }
+        //reset
+        GlobalProperties.happyWeapon = 0
     }
     
     
@@ -283,6 +287,8 @@ class Round {
                     memberTeam0[i]!.life -= (hit*2)
                     //give the new life value to newLifePoints
                     GlobalProperties.newLifePoints = memberTeam0[i]!.life
+                    //reset happyWeapon
+                    GlobalProperties.happyWeapon = 0
                 //default behavior
                 } else {
                     memberTeam0[i]!.life -= hit
@@ -377,6 +383,8 @@ class Round {
                 chooseHeal1()
             }
         }
+        //reset
+        GlobalProperties.happyWeapon = 0
     }
     
     //choose a fight or a cure

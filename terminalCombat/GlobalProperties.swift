@@ -34,7 +34,7 @@ class GlobalProperties {
     static var lifeTeam1 = [0, 0, 0]
     
     //to test if there's a random weapon
-    static var happyWeapon = Int()
+    static var happyWeapon = 0
     
     //value of life points to be healed by the wizard
     static var cureLife = Int()

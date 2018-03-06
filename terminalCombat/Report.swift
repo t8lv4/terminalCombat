@@ -37,6 +37,10 @@ class Report {
         if (level <= 0) {
             print("\(casualty), you are so out of this game !\n")
         }
+        //test sum of life points
+        if (GlobalProperties.lifeTeam0.reduce(0, +) <= 0) || (GlobalProperties.lifeTeam1.reduce(0, +) <= 0) {
+            lifeLevels()
+        }
         //utilities.waitAndClearTty(delay: 3)
     }
     
