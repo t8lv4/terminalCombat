@@ -28,13 +28,13 @@ class SetUpTeams {
             let _ = SetUp()
             
             //instantiate teamMember
-            memberTeam0[i] = TeamMember(name: Buffer.bufferName, life: Buffer.bufferValue[0], strength: Buffer.bufferValue[1])
+            memberTeam0.append(TeamMember(name: Buffer.bufferName, life: Buffer.bufferValue[0], strength: Buffer.bufferValue[1]))
             
             //set value of index 0 of nameOfWizard[] with wizard's name
             //set value of index 0 of wizardLife[] with wizard's life points
-            if (memberTeam0[i]!.life == 80) {
-                GlobalProperties.nameOfWizard[0] = memberTeam0[i]!.name
-                GlobalProperties.wizardLife[0] = memberTeam0[i]!.life
+            if (memberTeam0[i].life == 80) {
+                GlobalProperties.nameOfWizard[0] = memberTeam0[i].name
+                GlobalProperties.wizardLife[0] = memberTeam0[i].life
             }
             //clear tty window
             //utilities.shell("clear")
@@ -43,9 +43,9 @@ class SetUpTeams {
         //create an array of fighters' names
         for i in 0...2 {
             //avoid wizard
-            if !(GlobalProperties.nameOfWizard[0] == memberTeam0[i]!.name) {
+            if !(GlobalProperties.nameOfWizard[0] == memberTeam0[i].name) {
                 //set values to index in array of team0 fighter names
-                GlobalProperties.team0FighterName[i] = memberTeam0[i]!.name
+                GlobalProperties.team0FighterName[i] = memberTeam0[i].name
             }
         }
     }
@@ -65,13 +65,14 @@ class SetUpTeams {
             let _ = SetUp()
             
             //instantiate teamMember
-            memberTeam1[i] = TeamMember(name: Buffer.bufferName, life: Buffer.bufferValue[0], strength: Buffer.bufferValue[1])
+            //add instance to memberTeam1[]
+            memberTeam1.append(TeamMember(name: Buffer.bufferName, life: Buffer.bufferValue[0], strength: Buffer.bufferValue[1]))
             
             //set value of index 1 of nameOfWizard[]
             //set value of index 1 of wizardLife[] with wizard life points
-            if (memberTeam1[i]!.life == 80) {
-                GlobalProperties.nameOfWizard[1] = memberTeam1[i]!.name
-                GlobalProperties.wizardLife[1] = memberTeam1[i]!.life
+            if (memberTeam1[i].life == 80) {
+                GlobalProperties.nameOfWizard[1] = memberTeam1[i].name
+                GlobalProperties.wizardLife[1] = memberTeam1[i].life
             }
             //clear tty window
             //utilities.shell("clear")
@@ -80,9 +81,9 @@ class SetUpTeams {
         //set index values in array of fighters' names for team 1
         for i in 0...2 {
             //avoid wizard
-            if !(GlobalProperties.nameOfWizard[1] == memberTeam1[i]!.name) {
+            if !(GlobalProperties.nameOfWizard[1] == memberTeam1[i].name) {
                 //give fighters' names values to index array of team0 fighter names
-                GlobalProperties.team1FighterName[i] = memberTeam1[i]!.name
+                GlobalProperties.team1FighterName[i] = memberTeam1[i].name
             }
         }
     }
@@ -94,14 +95,14 @@ class SetUpTeams {
         print("\(GlobalProperties.playerName[0]), here is your team :")
         
         for i in 0...2 {
-            memberTeam0[i]!.summarize()
+            memberTeam0[i].summarize()
         }
         
         print("\n==================\n")
         
         print("\(GlobalProperties.playerName[1]), here is your team :")
         for i in 0...2 {
-            memberTeam1[i]!.summarize()
+            memberTeam1[i].summarize()
         }
         
         //utilities.waitAndClearTty(delay: 10)

@@ -11,7 +11,7 @@
 //set up players' names
 class Player {
     
-    var nameOfPlayer: String?
+    var nameOfPlayer = String()
     
     func getPlayerName() {
         

@@ -21,7 +21,7 @@ class Round {
     private func introducingOpponent1() {
         //print name, life and strength of the living (ie life > 0)
         for i in 0...2 {
-            memberTeam1[i]!.summarize()
+            memberTeam1[i].summarize()
         }
     }
     
@@ -39,12 +39,12 @@ class Round {
                 //scan the team members to find a match
                 for i in 0...2 {
                     //check if the opponent is alive
-                    if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life > 0) {
+                    if (memberTeam1[i].name == choice) && (memberTeam1[i].life > 0) {
                         //give opponent choice value (ie the name of the fighter)
                         GlobalProperties.opponent = choice
                         //you don't want to fight a dead, so now you actually *can't* fight a dead
-                    } else if (memberTeam1[i]!.name == choice) && (memberTeam1[i]!.life <= 0) {
-                        print("\nchill, \(memberTeam1[i]!.name) is already dead...\n")
+                    } else if (memberTeam1[i].name == choice) && (memberTeam1[i].life <= 0) {
+                        print("\nchill, \(memberTeam1[i].name) is already dead...\n")
                         chooseOpponent1()
                     }
                 }
@@ -74,20 +74,20 @@ class Round {
         
         //scan the team members to match with opponent value and find the life points
         for i in 0...2 {
-            if (memberTeam1[i]!.name == GlobalProperties.opponent) {
+            if (memberTeam1[i].name == GlobalProperties.opponent) {
                 //actually THIS is the battle field
                 //there's a special weapon : double the hit value
                 if (GlobalProperties.happyWeapon == 1) {
                     //subtract strength points (the 'hit' value) from opponent's life points
-                    memberTeam1[i]!.life -= (hit*2)
+                    memberTeam1[i].life -= (hit*2)
                     //give the new life value to newLifePoints
-                    GlobalProperties.newLifePoints = memberTeam1[i]!.life
+                    GlobalProperties.newLifePoints = memberTeam1[i].life
                     //reset
                     GlobalProperties.happyWeapon = 0
                 //default behavior
                 } else {
-                    memberTeam1[i]!.life -= hit
-                    GlobalProperties.newLifePoints = memberTeam1[i]!.life
+                    memberTeam1[i].life -= hit
+                    GlobalProperties.newLifePoints = memberTeam1[i].life
                 }
             }
         }
@@ -103,8 +103,8 @@ class Round {
         //prints name, life and strength of the living (ie life > 0)
         for i in 0...2 {
             //but don't print the wizard
-            if !(GlobalProperties.nameOfWizard.contains(memberTeam0[i]!.name)) {
-                memberTeam0[i]!.summarize()
+            if !(GlobalProperties.nameOfWizard.contains(memberTeam0[i].name)) {
+                memberTeam0[i].summarize()
             }
         }
     }
@@ -122,11 +122,11 @@ class Round {
                 //scan the team names to find a match with the input value
                 for i in 0...2 {
                     
-                    if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life > 0) {
+                    if (memberTeam0[i].name == fighter) && (memberTeam0[i].life > 0) {
                         //pass strength points to the fight function
-                        fightAgainstTeam1(hit: memberTeam0[i]!.strength)
+                        fightAgainstTeam1(hit: memberTeam0[i].strength)
                     //if the fighter is dead, relaunch the choose fighter process
-                    } else if (memberTeam0[i]!.name == fighter) && (memberTeam0[i]!.life <= 0) {
+                    } else if (memberTeam0[i].name == fighter) && (memberTeam0[i].life <= 0) {
                         
                         print("we're not rebooting the walking dead here")
                         chooseFighter0()
@@ -146,8 +146,8 @@ class Round {
         print("choose your team member (enter his•her name)")
         for i in 0...2 {
             //don't print the dead && don't print the wizard
-            if !(memberTeam0[i]!.life <= 0) && (memberTeam0[i]!.name != GlobalProperties.nameOfWizard[0]) {
-                memberTeam0[i]!.summarize()
+            if !(memberTeam0[i].life <= 0) && (memberTeam0[i].name != GlobalProperties.nameOfWizard[0]) {
+                memberTeam0[i].summarize()
             }
         }
         //read input
@@ -161,12 +161,12 @@ class Round {
                 //scan the members to find a match
                 for i in 0...2 {
                     
-                    if (choice == memberTeam0[i]!.name) {
+                    if (choice == memberTeam0[i].name) {
                         //add wizard's strength to life points
-                        GlobalProperties.cureLife = memberTeam0[i]!.life
-                        memberTeam0[i]!.life = WizardSpell.heal(wound: GlobalProperties.cureLife)
+                        GlobalProperties.cureLife = memberTeam0[i].life
+                        memberTeam0[i].life = WizardSpell.heal(wound: GlobalProperties.cureLife)
                         //print new life value
-                        print("\(memberTeam0[i]!.name) has now \(memberTeam0[i]!.life) life points\n")
+                        print("\(memberTeam0[i].name) has now \(memberTeam0[i].life) life points\n")
                         //utilities.waitAndClearTty(delay: 2)
                     }
                 }
@@ -199,7 +199,7 @@ class Round {
                 //if there's no wizard in the team, go fight
                 if (GlobalProperties.nameOfWizard[0] == "") {
                     print("there's no wizard in your team. go fight !\n") ; chooseFighter0()
-                    //if the wizard is dead, go fight
+                    //if the wizard is dead, go fightb
                 } else if (GlobalProperties.wizardLife[0] <= 0) {
                     print("the wizard took the boat with the elves. RIP. now go fight !\n") ; chooseFighter0()
                     //else, go heal
@@ -227,7 +227,7 @@ class Round {
     private func introducingOpponent0() {
         //prints name, life and strength of the living (ie life > 0)
         for i in 0...2 {
-            memberTeam0[i]!.summarize()
+            memberTeam0[i].summarize()
         }
     }
     
@@ -245,12 +245,12 @@ class Round {
                 //scan the team members to find a match
                 for i in 0...2 {
                     
-                    if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life > 0) {
+                    if (memberTeam0[i].name == choice) && (memberTeam0[i].life > 0) {
                         //give opponent choice value (ie the name of the fighter)
                         GlobalProperties.opponent = choice
                         //you don't want to fight a dead, so now you actually *can't* fight a dead
-                    } else if (memberTeam0[i]!.name == choice) && (memberTeam0[i]!.life <= 0) {
-                        print("\nchill, \(memberTeam0[i]!.name) is already dead...\n")
+                    } else if (memberTeam0[i].name == choice) && (memberTeam0[i].life <= 0) {
+                        print("\nchill, \(memberTeam0[i].name) is already dead...\n")
                         chooseOpponent0()
                     }
                 }
@@ -279,20 +279,20 @@ class Round {
         //scan the team members to match with opponent value and find the life points
         for i in 0...2 {
             
-            if (memberTeam0[i]!.name == GlobalProperties.opponent) {
+            if (memberTeam0[i].name == GlobalProperties.opponent) {
                 //actually THIS is the battle field !
                 //if there's a random weapon this round : double hit value
                 if (GlobalProperties.happyWeapon == 1) {
                     //subtract strength points (the 'hit' value) from life points of the opponent
-                    memberTeam0[i]!.life -= (hit*2)
+                    memberTeam0[i].life -= (hit*2)
                     //give the new life value to newLifePoints
-                    GlobalProperties.newLifePoints = memberTeam0[i]!.life
+                    GlobalProperties.newLifePoints = memberTeam0[i].life
                     //reset happyWeapon
                     GlobalProperties.happyWeapon = 0
                 //default behavior
                 } else {
-                    memberTeam0[i]!.life -= hit
-                    GlobalProperties.newLifePoints = memberTeam0[i]!.life
+                    memberTeam0[i].life -= hit
+                    GlobalProperties.newLifePoints = memberTeam0[i].life
                 }
             }
         }
@@ -307,8 +307,8 @@ class Round {
         //prints name, life and strength of the living (ie life > 0)
         for i in 0...2 {
             //but don't print the wizard
-            if !(GlobalProperties.nameOfWizard.contains(memberTeam1[i]!.name)) {
-                memberTeam1[i]!.summarize()
+            if !(GlobalProperties.nameOfWizard.contains(memberTeam1[i].name)) {
+                memberTeam1[i].summarize()
             }
         }
     }
@@ -326,11 +326,11 @@ class Round {
                 //scan the team names to find a match with the input value
                 for i in 0...2 {
                     
-                    if (memberTeam1[i]!.name == fighter) && (memberTeam1[i]!.life > 0) {
+                    if (memberTeam1[i].name == fighter) && (memberTeam1[i].life > 0) {
                         //pass strength points to the fight function
-                        fightAgainstTeam0(hit: memberTeam1[i]!.strength)
+                        fightAgainstTeam0(hit: memberTeam1[i].strength)
                         //if the fighter is dead, relaunch the choose fighter process
-                    } else if (memberTeam1[i]!.name == fighter) && (memberTeam1[i]!.life <= 0) {
+                    } else if (memberTeam1[i].name == fighter) && (memberTeam1[i].life <= 0) {
                         print("we're not rebooting the walking dead here")
                         chooseFighter1()
                     }
@@ -350,8 +350,8 @@ class Round {
         
         for i in 0...2 {
             //don't print the dead && don't print the wizard
-            if !(memberTeam1[i]!.life <= 0) && (memberTeam1[i]!.name != GlobalProperties.nameOfWizard[1]) {
-                memberTeam1[i]!.summarize()
+            if !(memberTeam1[i].life <= 0) && (memberTeam1[i].name != GlobalProperties.nameOfWizard[1]) {
+                memberTeam1[i].summarize()
             }
         }
         //read input
@@ -365,14 +365,14 @@ class Round {
                 //scan the members to find a match
                 for i in 0...2 {
                     
-                    if (choice == memberTeam1[i]!.name) {
+                    if (choice == memberTeam1[i].name) {
                         //add wizard's strength to life points
-                        GlobalProperties.cureLife = memberTeam1[i]!.life
+                        GlobalProperties.cureLife = memberTeam1[i].life
                         
-                        memberTeam1[i]!.life = WizardSpell.heal(wound: GlobalProperties.cureLife)
+                        memberTeam1[i].life = WizardSpell.heal(wound: GlobalProperties.cureLife)
                         
                         //print new life value
-                        print("\(memberTeam1[i]!.name) has now \(memberTeam1[i]!.life) life points\n")
+                        print("\(memberTeam1[i].name) has now \(memberTeam1[i].life) life points\n")
                         
                         //utilities.waitAndClearTty(delay: 2)
                     }

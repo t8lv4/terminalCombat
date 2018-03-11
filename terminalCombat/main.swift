@@ -15,11 +15,11 @@ import Cocoa
 
 //MARK: create team members' arrays
 //use optionals to create arrays before instantiation process
-private var m00: TeamMember? ; private var m01: TeamMember? ; private var m02: TeamMember?
-var memberTeam0 = [m00, m01, m02]
+//private var m00: TeamMember? ; private var m01: TeamMember? ; private var m02: TeamMember?
+var memberTeam0 = [TeamMember]()
 
-private var m10: TeamMember? ; private var m11: TeamMember? ; private var m12: TeamMember?
-var memberTeam1 = [m10, m11, m12]
+//private var m10: TeamMember? ; private var m11: TeamMember? ; private var m12: TeamMember?
+var memberTeam1 = [TeamMember]()
 
 //MARK: instantiate Utilities
 let utilities = Utilities()
